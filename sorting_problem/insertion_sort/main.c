@@ -29,7 +29,7 @@ int insort(int length, int arr[])
             int tmp = arr[k - 1];
             arr[k - 1] = arr[k];
             arr[k] = tmp;
-            k -= 1;
+            k--;
         }
     }
 
