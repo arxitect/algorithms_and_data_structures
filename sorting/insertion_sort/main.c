@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "data.h"
 
-int insort(int, int[]);
+void insort(int, int[]);
 
 int main()
 {   
@@ -18,10 +18,12 @@ int main()
         printf("%d ", data[i]);
 
     printf(" Output\n");
+
+    return 0;
 }
 
 /* insertion sort */
-int insort(int length, int arr[])
+void insort(int length, int arr[])
 {
     for(int i = 1; i < length; i++){
         int k = i;
