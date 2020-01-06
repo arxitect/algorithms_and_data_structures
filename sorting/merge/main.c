@@ -25,14 +25,16 @@ int main()
 
 void mergesort(int arr[], int l, int r)
 {
-    if (l == r) return; ь
-    int mid = (l + r) / 2; 
+    if (l == r) return; // if one elem
+    int mid = (l + r) / 2;  // mid of data
 
-    mergesort(arr, l, mid);
-    mergesort(arr, mid + 1, r);
+    mergesort(arr, l, mid); // start merge sort first half
+    mergesort(arr, mid + 1, r); // start merge sort seconf half
     int i = l; 
     int j = mid + 1;
+
     int *tmp = (int*)malloc(r * sizeof(int)); 
+    
     for (int step = 0; step < r - l + 1; step++){
         if ((j > r) || ((i <= mid) && (arr[i] < arr[j]))) {
           tmp[step] = arr[i];

@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "data.h"
 
-int linsearch(int[], int, int);
+int binsearch(int[], int, int);
 
 int main()
 {   
@@ -15,16 +15,25 @@ int main()
 
     printf("Input search number: ");
     scanf("%d",&pattern);
-    linsearch(data, pattern, length);
+    binsearch(data, pattern, length);
 
     return 0;
 }
 
-/* linear search */
-int linsearch(int arr[], int pattern, int length)
-{
-    for( int i = 0; i < length; i++){ // printing data
-        if(arr[i] == pattern){
+/* binary search */
+int binsearch(int arr[], int pattern, int length)
+{   
+    int low, mid, high;
+
+    low = 0;
+    high = length - 1;
+    while(low <= high){
+        mid = (low + high) / 2;
+        if(pattern < arr[mid])
+            high = mid - 1;
+        else if(pattern > arr[mid])
+            low = mid + 1;
+        else{ 
             printf("Value %d has found!\n", pattern);
             return 0;
         }
