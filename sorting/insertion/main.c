@@ -10,9 +10,14 @@ int main()
     for( int i = 0; i < length; i++) // printing input data
         printf("%d ", data[i]);
 
-    printf(" <-Input\n");
+    printf(" Input\n");
 
     insort(length, data);
+
+    for( int i = 0; i < length; i++) // printing input data
+        printf("%d ", data[i]);
+
+    printf(" Output\n");
 
     return 0;
 }
@@ -28,9 +33,5 @@ void insort(int length, int arr[])
             arr[k] = tmp;
             k--;
         }
-
-        for( int i = 0; i < length; i++) // printing output data
-            printf("%d ", data[i]);
-        printf("\n");
     }
 }
