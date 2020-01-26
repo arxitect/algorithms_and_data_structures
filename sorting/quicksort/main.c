@@ -3,8 +3,8 @@
 #include "data.h"
 
 void swap(int *, int *);
-int partition (int [], int, int) ; 
-void quickSort(int [], int, int);
+int partition (int arr[], int low, int high) ; 
+void quickSort(int arr[], int low, int high);
 
 int main()
 {   

@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "data.h"
 
-void insort(int, int[]);
+void insort(int length, int arr[]);
 
 int main()
 {   

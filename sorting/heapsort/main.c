@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include "data.h"
 
-void heappfy(int [], int , int );
-void heapSort(int [], int);
-void swap(int *, int *);
+void heappfy(int arr[], int n, int i);
+void heapSort(int arr[], int length);
+void swap(int *from, int *to);
 
 int main()
 {   

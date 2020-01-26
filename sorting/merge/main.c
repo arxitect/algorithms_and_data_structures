@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "data.h"
 
-void mergesort(int [], int, int);
+void mergeSort(int arr[], int l, int r);
 
 int main()
 {   
