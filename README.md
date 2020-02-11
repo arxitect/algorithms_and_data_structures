@@ -1,3 +1,6 @@
 # Algorithms in the C programming language
 This repository implements algorithms in the C programming language.  
-(Be careful! When implementing algorithms, in many cases, pointers are not used for better understanding. Modify code for better algorithms!)
+
+Here are presented only the basic concepts for the implementation of algorithms for their understanding. You can use them as a basis in your projects, modifying and optimizing.
+
+Good luck!!!
