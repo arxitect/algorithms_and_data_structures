@@ -5,7 +5,7 @@ void insort(int length, int arr[]);
 
 int main()
 {   
-    int length = sizeof(data)/sizeof(int); // size of data
+    int length = sizeof(data) / sizeof(int); // size of data
 
     for( int i = 0; i < length; i++) // printing input data
         printf("%d ", data[i]);

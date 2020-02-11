@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "data.h"
 
+void bucketSort(double arr[], int length);
 
 int main()
 {   
@@ -11,6 +12,7 @@ int main()
 
     printf(" Input\n");
 
+    bucketSort(data, length);
 
     for( int i = 0; i < length; i++) // printing input data
         printf("%.2f ", data[i]);
@@ -18,4 +20,9 @@ int main()
     printf(" Output\n");
 
     return 0;
+}
+
+void bucketSort(double arr[], int length)
+{
+
 }
