@@ -5,20 +5,13 @@
 //push to stack
 void push(int *data,int n)
 {
-    int range = MAX;
-    while(--range >= 0){
-        if(data[range] == 0){
-            data[range] = n;
-            break;
-        }else{
-            continue;
-        }
-    }
+    *data++ = n;
 }
 
 //pop from stack
-int pop()
-{
+int pop(int *data)
+{   
+    printf("%d \n", (*data)--);
     return 0;
 }
 
@@ -32,6 +25,11 @@ int main()
         int n;
         scanf("%d", &n);
         push(data, n);
+    }
+
+    int j = 0;
+    while(j++ < MAX){
+        pop(data);
     }
 
     return 0;
