@@ -16,7 +16,8 @@ void delete_from_end();
 
 int count = 0;
 
-int main () {
+int main () 
+{
     int i, data;
 
     for (;;) {
@@ -54,7 +55,8 @@ int main () {
     return 0;
 }
 
-void insert_at_begin(int x) {
+void insert_at_begin(int x) 
+{
     struct node *t;
 
     t = (struct node*)malloc(sizeof(struct node));
@@ -71,7 +73,8 @@ void insert_at_begin(int x) {
     start = t;
 }
 
-void insert_at_end(int x) {
+void insert_at_end(int x) 
+{
     struct node *t, *temp;
 
     t = (struct node*)malloc(sizeof(struct node));
@@ -93,7 +96,8 @@ void insert_at_end(int x) {
     t->next = NULL;
 }
 
-void traverse() {
+void traverse() 
+{
     struct node *t;
 
     t = start;
@@ -112,7 +116,8 @@ void traverse() {
     printf("%d\n", t->data);
 }
 
-void delete_from_begin() {
+void delete_from_begin() 
+{
     struct node *t;
     int n;
 
@@ -130,7 +135,8 @@ void delete_from_begin() {
     printf("%d deleted from the beginning successfully.\n", n);
 }
 
-void delete_from_end() {
+void delete_from_end() 
+{
     struct node *t, *u;
     int n;
 
