@@ -22,20 +22,23 @@ int main()
     return 0;
 }
 
+/* bucket sort */
 void bucketSort(int arr[], int n)
 {
     int i, j;   
-    int count[n];  
-    for(i=0; i < n; i++){   
+    int count[n]; // new array with length of data elements
+
+    for(i = 0; i < n; i++){   
         count[i] = 0;   
-    }       
-    for(i=0; i < n; i++){    
-        (count[arr[i]])++; 
     }     
-    for(i=0,j=0; i < n; i++){   
-    for(; count[i]>0;(count[i])--) 
-        {       
-            arr[j++] = i; 
+
+    for(i = 0; i < n; i++){
+        (count[arr[i]])++; // counting elems
+    }   
+
+    for(i = 0, j = 0; i < n; i++){   
+        for(; count[i] > 0; (count[i])--){       
+            arr[j++] = i; // insert elems to data
         }  
     }
 }
