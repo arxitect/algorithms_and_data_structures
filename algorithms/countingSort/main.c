@@ -24,7 +24,7 @@ int main()
     return 0;
 }
 
-/* get max: pull max element of array */
+/* getMax: pull max element of array */
 int getMax(int array[], int size)
 {
     int max = array[0];

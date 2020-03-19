@@ -31,11 +31,13 @@ int main()
     return 0;
 }
 
+/*compareIntegers: function for qsort*/
 int compareIntegers(const void* first, const void* second)
 {
     return *((int*)first) - *((int*)second);
 }
 
+/* bucket sort*/
 void bucketSort(int array[],int n)
 {
     struct bucket buckets[3];
