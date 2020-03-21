@@ -24,20 +24,23 @@ int main()
     return 0;
 }
 
-/* heapify: build heap */
+/* heapify: to heapify subtree with root node */
 void heapify(int arr[], int n, int i)
 {   
-    int largest = i;   
+    int largest = i;   //Largest as root
 
-    int l = 2 * i + 1; // left
-    int r = 2 * i + 2; // right
+    int l = 2 * i + 1; // left child
+    int r = 2 * i + 2; // right child
 
+    // if left child is larger then root
     if (l < n && arr[l] > arr[largest])
         largest = l;
 
+    //if right is larger then root
     if (r < n && arr[r] > arr[largest])
         largest = r;
 
+    //if largest is not root
     if (largest != i)
     {
         swap(&arr[i], &arr[largest]);
@@ -47,17 +50,22 @@ void heapify(int arr[], int n, int i)
 
 /* heapSort: sorting array */
 void heapSort(int arr[], int length)
-{
+{   
+    // buld heap
     for (int i = length / 2 - 1; i >= 0 ; i--)
         heapify(arr, length, i);
 
+    // Extract elements from heap
     for (int i = length - 1; i >= 0; i--)
-    {
+    {   
+        // Move current root to end
         swap(&arr[0], &arr[i]);
+        // call hepify on the reduce heap
         heapify(arr, i, 0);
     }
 }
 
+/* swap: swap two values*/
 void swap(int *from, int *to)
 {
     int tmp = *from;
