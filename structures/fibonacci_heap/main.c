@@ -264,14 +264,19 @@ void display()
     else { 
         printf("The root nodes of Heap are:\n");
         do { 
-            cout << ptr->key; 
+            printf("%d\n", ptr->key);
             ptr = ptr->right; 
-            if (ptr != mini) { 
-                cout << "-->"; 
+            if (ptr != mini) {  
+                printf("-->\n");
             } 
         } while (ptr != mini && ptr->right != NULL); 
         printf("\nThe heap has %d nodes\n",no_of_nodes);
     } 
+} 
+
+void find_min(struct node* min) 
+{ 
+     printf("min of heap is: %d", min->key);
 } 
 
 int main() 
