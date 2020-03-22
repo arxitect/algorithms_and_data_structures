@@ -2,6 +2,7 @@
 #include "data.h"
 
 void insort(int length, int arr[]);
+void swap(int *from, int *to);
 
 int main()
 {   
@@ -27,11 +28,18 @@ void insort(int length, int arr[])
 {
     for(int i = 1; i < length; i++){
         int k = i;
-        while(k > 0 && arr[k - 1] > arr[k]){
-            int tmp = arr[k - 1];
-            arr[k - 1] = arr[k];
-            arr[k] = tmp;
+        while(k > 0 && arr[k - 1] > arr[k]){ // while element not sorted
+            swap(&arr[k - 1], &arr[k]);
             k--;
         }
     }
+}
+
+/* swap: swap two values*/
+void swap(int *from, int *to)
+{
+    int tmp = *from;
+
+    *from = *to;
+    *to = tmp;
 }
