@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include <malloc.h>
 #include "data.h"
 
 void mergeSort(int arr[], int l, int r);
@@ -13,7 +13,7 @@ int main()
 
     printf(" Input\n");
 
-    mergesort(data, 0, length - 1);
+    mergeSort(data, 0, length - 1);
 
     for( int i = 0; i < length; i++) // printing output data
         printf("%d ", data[i]);
@@ -23,13 +23,15 @@ int main()
     return 0;
 }
 
-void mergesort(int arr[], int l, int r)
+/* merge sort */
+void mergeSort(int arr[], int l, int r)
 {
     if (l == r) return; // if one elem
     int mid = (l + r) / 2;  // mid of data
 
-    mergesort(arr, l, mid); // start merge sort first half
-    mergesort(arr, mid + 1, r); // start merge sort seconf half
+    mergeSort(arr, l, mid); // start merge sort first half
+    mergeSort(arr, mid + 1, r); // start merge sort seconf half
+
     int i = l; 
     int j = mid + 1;
 
@@ -45,6 +47,7 @@ void mergesort(int arr[], int l, int r)
           j++;
         }
     }
+    
     for (int step = 0; step < r - l + 1; step++)
         arr[l + step] = tmp[step];
 }
