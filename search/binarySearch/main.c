@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "data.h"
 
-int binsearch(int[], int, int);
+int binSearch(int arr[], int pattern, int length);
 
 int main()
 {   
@@ -15,13 +15,13 @@ int main()
 
     printf("Input search number: ");
     scanf("%d",&pattern);
-    binsearch(data, pattern, length);
+    binSearch(data, pattern, length);
 
     return 0;
 }
 
 /* binary search */
-int binsearch(int arr[], int pattern, int length)
+int binSearch(int arr[], int pattern, int length)
 {   
     int low, mid, high;
 
@@ -29,6 +29,7 @@ int binsearch(int arr[], int pattern, int length)
     high = length - 1;
     while(low <= high){
         mid = (low + high) / 2;
+        //find out which half of the array the element is in
         if(pattern < arr[mid])
             high = mid - 1;
         else if(pattern > arr[mid])
