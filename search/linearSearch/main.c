@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "data.h"
 
-int linsearch(int[], int, int);
+int linSearch(int[], int, int);
 
 int main()
 {   
@@ -15,13 +15,13 @@ int main()
 
     printf("Input search number: ");
     scanf("%d",&pattern);
-    linsearch(data, pattern, length);
+    linSearch(data, pattern, length);
 
     return 0;
 }
 
 /* linear search */
-int linsearch(int arr[], int pattern, int length)
+int linSearch(int arr[], int pattern, int length)
 {
     for( int i = 0; i < length; i++){ // printing data
         if(arr[i] == pattern){
