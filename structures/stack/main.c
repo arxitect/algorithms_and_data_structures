@@ -4,14 +4,15 @@
 struct stack
 {
     int stk[MAXSIZE];
-    int top;
+    int top; // key of first element
 };
 
 typedef struct stack STACK;
-STACK s;
+
+STACK s; // Stack instance
  
 void push(void);
-int  pop(void);
+void pop(void);
 void display(void);
  
 void main ()
@@ -21,30 +22,28 @@ void main ()
     s.top = -1;
  
     printf ("STACK OPERATION\n");
-    while (option)
-    {
+    while (option) {
         printf ("------------------------------------------\n");
-        printf ("      1    -->    PUSH               \n");
-        printf ("      2    -->    POP               \n");
-        printf ("      3    -->    DISPLAY               \n");
-        printf ("      4    -->    EXIT           \n");
+        printf ("1    -->    PUSH               \n");
+        printf ("2    -->    POP               \n");
+        printf ("3    -->    DISPLAY               \n");
+        printf ("4    -->    EXIT           \n");
         printf ("------------------------------------------\n");
  
         printf ("Enter your choice\n");
         scanf    ("%d", &choice);
-        switch (choice)
-        {
-        case 1:
-            push();
-            break;
-        case 2:
-            pop();
-            break;
-        case 3:
-            display();
-            break;
-        case 4:
-            return;
+        switch (choice){
+            case 1:
+                push();
+                break;
+            case 2:
+                pop();
+                break;
+            case 3:
+                display();
+                break;
+            case 4:
+                return;
         }
         fflush (stdin);
         printf ("Do you want to continue(Type 0 or 1)?\n");
@@ -52,56 +51,45 @@ void main ()
     }
 }
 
+/* push: put new element to stack */
 void push ()
 {
     int num;
-    if (s.top == (MAXSIZE - 1))
-    {
+
+    if (s.top == (MAXSIZE - 1)){
         printf ("Stack is Full\n");
-        return;
-    }
-    else
-    {
+    }else{
         printf ("Enter the element to be pushed\n");
         scanf ("%d", &num);
-        s.top = s.top + 1;
+
+        s.top++;
         s.stk[s.top] = num;
     }
-    return;
 }
 
-int pop ()
+/* pop: extract element from stack */
+void pop ()
 {
-    int num;
-    if (s.top == - 1)
-    {
+    if (s.top == - 1){
         printf ("Stack is Empty\n");
-        return (s.top);
+    }else{
+        printf ("poped element is = %d\n", s.stk[s.top]);
+
+        s.stk[s.top] = 0;
+        s.top--; 
     }
-    else
-    {
-        num = s.stk[s.top];
-        printf ("poped element is = %dn", s.stk[s.top]);
-        s.top = s.top - 1;
-    }
-    return(num);
 }
 
+/* display: show stack */
 void display ()
 {
     int i;
-    if (s.top == -1)
-    {
+    if (s.top == -1){
         printf ("Stack is empty\n");
-        return;
-    }
-    else
-    {
+    }else{
         printf ("\n The status of the stack is \n");
         for (i = s.top; i >= 0; i--)
-        {
             printf ("%d\n", s.stk[i]);
-        }
     }
     printf ("\n");
 }
