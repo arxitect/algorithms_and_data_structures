@@ -1,15 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 struct node {
     int data;
     struct node *next;
 };
 
+//Start of list
 struct node *start = NULL;
 
-void insert_at_begin(int);
-void insert_at_end(int);
+void insert_at_begin(int x);
+void insert_at_end(int x);
 void traverse();
 void delete_from_begin();
 void delete_from_end();
@@ -20,7 +22,7 @@ int main ()
 {
     int i, data;
 
-    for (;;) {
+    while (true) {
         printf("1. Insert an element at the beginning of linked list.\n");
         printf("2. Insert an element at the end of linked list.\n");
         printf("3. Traverse linked list.\n");
@@ -30,31 +32,38 @@ int main ()
 
         scanf("%d", &i);
 
-        if (i == 1) {
-            printf("Enter value of element\n");
-            scanf("%d", &data);
-            insert_at_begin(data);
+        switch(i){
+            case 1:
+                printf("Enter value of element\n");
+                scanf("%d", &data);
+                insert_at_begin(data);
+                break;
+            case 2:
+                printf("Enter value of element\n");
+                scanf("%d", &data);
+                insert_at_end(data);
+                break;
+            case 3:
+                traverse();
+                break;
+            case 4:
+                delete_from_begin();
+                break;
+            case 5:
+                delete_from_end();
+                break;
+            case 6:
+                return 0;
+            default:
+                 printf("Please enter valid input.\n");
+                 continue;
         }
-        else if (i == 2) {
-            printf("Enter value of element\n");
-            scanf("%d", &data);
-            insert_at_end(data);
-        }
-        else if (i == 3)
-            traverse();
-        else if (i == 4)
-            delete_from_begin();
-        else if (i == 5)
-            delete_from_end();
-        else if (i == 6)
-            break;
-        else
-            printf("Please enter valid input.\n");
     }
 
     return 0;
 }
 
+/*insert_at_begin: insert element to top of list*/
 void insert_at_begin(int x) 
 {
     struct node *t;
@@ -73,6 +82,7 @@ void insert_at_begin(int x)
     start = t;
 }
 
+/*insert_at_end: insert element to end of list*/
 void insert_at_end(int x) 
 {
     struct node *t, *temp;
@@ -96,6 +106,7 @@ void insert_at_end(int x)
     t->next = NULL;
 }
 
+/*traverse: show elements of list*/
 void traverse() 
 {
     struct node *t;
@@ -110,12 +121,13 @@ void traverse()
     printf("There are %d elements in linked list.\n", count);
 
     while (t->next != NULL) {
-        printf("%d\n", t->data);
+        printf("%d, ", t->data);
         t = t->next;
     }
     printf("%d\n", t->data);
 }
 
+/*delete_from_begin: deleting element from top of list*/
 void delete_from_begin() 
 {
     struct node *t;
@@ -135,6 +147,7 @@ void delete_from_begin()
     printf("%d deleted from the beginning successfully.\n", n);
 }
 
+/*delete_from_end: deleting element from end of list*/
 void delete_from_end() 
 {
     struct node *t, *u;
