@@ -61,9 +61,9 @@ void insert()
 /* delete: delete delete element from queue */
 void delete()
 {
-    if(front == - 1 || front > rear){
+    if(front == - 1 || front > rear)
         printf("Queue Underflow \n");
-    }else{
+    else{
         printf("Element deleted from queue is : %d\n", queue[front]);
         front++;
     }
