@@ -1,44 +1,57 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//Doubly linked list
 struct Node  {
     int data;
     struct Node* next;
     struct Node* prev;
 };
 
-struct Node* head; 
+//Head of list
+struct Node* head = NULL; 
 
+struct Node* getNewNode(int x);
+void insertAtHead(int x);
+void insertAtTail(int x);
+void print();
+void reversePrint();
 
-struct Node* GetNewNode(int x) {
-    struct Node* newNode
-        = (struct Node*)malloc(sizeof(struct Node));
+int main() {
+    insertAtHead(43); 
+    print();
+
+    insertAtTail(2); 
+    print(); 
+    reversePrint();
+
+    insertAtTail(4); 
+    print(); 
+    reversePrint();
+
+    insertAtTail(6); 
+    print();
+    reversePrint();
+
+    insertAtTail(8); 
+    print(); 
+    reversePrint();
+    
+}
+/*getNewNode: create New node of list*/
+struct Node* getNewNode(int x) 
+{
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
     newNode->data = x;
     newNode->prev = NULL;
     newNode->next = NULL;
     return newNode;
 }
 
-void InsertAtHead(int x);
-void InsertAtTail(int x);
-void Print();
-void ReversePrint();
-
-int main() {
-
-
-    head = NULL;
-    
-    InsertAtTail(2); Print(); ReversePrint();
-    InsertAtTail(4); Print(); ReversePrint();
-    InsertAtHead(6); Print(); ReversePrint();
-    InsertAtTail(8); Print(); ReversePrint();
-    
-}
-
-void InsertAtHead(int x) 
+/*insertAtHead: put element to top of list*/
+void insertAtHead(int x) 
 {
-    struct Node* newNode = GetNewNode(x);
+    struct Node* newNode = getNewNode(x);
     if(head == NULL) {
         head = newNode;
         return;
@@ -48,11 +61,11 @@ void InsertAtHead(int x)
     head = newNode;
 }
 
-
-void InsertAtTail(int x)
+/*insertAtTail: put element to end of list*/
+void insertAtTail(int x)
 {
     struct Node* temp = head;
-    struct Node* newNode = GetNewNode(x);
+    struct Node* newNode = getNewNode(x);
     if(head == NULL) {
         head = newNode;
         return;
@@ -62,8 +75,8 @@ void InsertAtTail(int x)
     newNode->prev = temp;
 }
 
-
-void Print() 
+/*print: to display list*/
+void print() 
 {
     struct Node* temp = head;
     printf("Forward: ");
@@ -74,15 +87,15 @@ void Print()
     printf("\n");
 }
 
-
-void ReversePrint() 
+/*reversePrint: to display reverse list*/
+void reversePrint() 
 {
     struct Node* temp = head;
     if(temp == NULL) return;
+
     while(temp->next != NULL) {
         temp = temp->next;
     }
-
     printf("Reverse: ");
     while(temp != NULL) {
         printf("%d ",temp->data);
