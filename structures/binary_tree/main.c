@@ -1,12 +1,12 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-struct bin_tree {
+struct binTree {
     int data;
-    struct bin_tree * right, * left;
+    struct binTree *right, *left; // children of node
 };
 
-typedef struct bin_tree node;
+typedef struct binTree node;
 
 void insert(node ** tree, int val);
 void printPreorder(node *tree);
@@ -21,7 +21,7 @@ void main()
     node *tmp;
 
     root = NULL;
-    /* Inserting nodes into tree */
+    // Inserting nodes into tree 
     insert(&root, 9);
     insert(&root, 4);
     insert(&root, 15);
@@ -30,7 +30,7 @@ void main()
     insert(&root, 17);
     insert(&root, 2);
 
-    /* Printing nodes of tree */
+    // Printing nodes of tree 
     printf("Pre Order Display\n");
     printPreorder(root);
 
@@ -40,17 +40,18 @@ void main()
     printf("Post Order Display\n");
     printPostorder(root);
 
-    /* Search node into tree */
+    // Search node into tree 
     tmp = search(&root, 4);
     if (tmp)
         printf("Searched node=%d\n", tmp->data);
     else
         printf("Data Not found in tree.\n");
 
-    /* Deleting all nodes of tree */
+    // Deleting all nodes of tree 
     delTree(root);
 }
 
+/*insert: insert to tree*/
 void insert(node **tree, int val)
 {
     node *temp = NULL;
@@ -62,14 +63,14 @@ void insert(node **tree, int val)
         return;
     }
 
-    if(val < (*tree)->data){
+    if(val < (*tree)->data)
         insert(&(*tree)->left, val);
-    }else if(val > (*tree)->data){
+    else if(val > (*tree)->data)
         insert(&(*tree)->right, val);
-    }
 
 }
 
+/*printPreorder: print tree*/
 void printPreorder(node *tree)
 {
     if (tree){
@@ -80,6 +81,7 @@ void printPreorder(node *tree)
 
 }
 
+/*printInorder: print tree*/
 void printInorder(node *tree)
 {
     if (tree){
@@ -89,6 +91,7 @@ void printInorder(node *tree)
     }
 }
 
+/*printPostorder: print tree*/
 void printPostorder(node *tree)
 {
     if (tree){
@@ -98,6 +101,7 @@ void printPostorder(node *tree)
     }
 }
 
+/*delTree: deleting tree*/
 void delTree(node *tree)
 {
     if (tree){
@@ -107,6 +111,7 @@ void delTree(node *tree)
     }
 }
 
+/*search: search value in tree*/
 node *search(node **tree, int val)
 {
     if(!(*tree)){
