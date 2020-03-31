@@ -9,17 +9,16 @@ struct bin_tree {
 typedef struct bin_tree node;
 
 void insert(node ** tree, int val);
-void print_preorder(node *tree);
-void print_inorder(node *tree);
-void print_postorder(node *tree);
-void deltree(node *tree);
+void printPreorder(node *tree);
+void printInorder(node *tree);
+void printPostorder(node *tree);
+void delTree(node *tree);
 node *search(node **tree, int val);
 
 void main()
 {
     node *root;
     node *tmp;
-    //int i;
 
     root = NULL;
     /* Inserting nodes into tree */
@@ -33,24 +32,23 @@ void main()
 
     /* Printing nodes of tree */
     printf("Pre Order Display\n");
-    print_preorder(root);
+    printPreorder(root);
 
     printf("In Order Display\n");
-    print_inorder(root);
+    printInorder(root);
 
     printf("Post Order Display\n");
-    print_postorder(root);
+    printPostorder(root);
 
     /* Search node into tree */
     tmp = search(&root, 4);
-    if (tmp){
+    if (tmp)
         printf("Searched node=%d\n", tmp->data);
-    }else{
+    else
         printf("Data Not found in tree.\n");
-    }
 
     /* Deleting all nodes of tree */
-    deltree(root);
+    delTree(root);
 }
 
 void insert(node **tree, int val)
@@ -72,39 +70,39 @@ void insert(node **tree, int val)
 
 }
 
-void print_preorder(node *tree)
+void printPreorder(node *tree)
 {
     if (tree){
         printf("%d\n",tree->data);
-        print_preorder(tree->left);
-        print_preorder(tree->right);
+        printPreorder(tree->left);
+        printPreorder(tree->right);
     }
 
 }
 
-void print_inorder(node *tree)
+void printInorder(node *tree)
 {
     if (tree){
-        print_inorder(tree->left);
+        printInorder(tree->left);
         printf("%d\n",tree->data);
-        print_inorder(tree->right);
+        printInorder(tree->right);
     }
 }
 
-void print_postorder(node *tree)
+void printPostorder(node *tree)
 {
     if (tree){
-        print_postorder(tree->left);
-        print_postorder(tree->right);
+        printPostorder(tree->left);
+        printPostorder(tree->right);
         printf("%d\n",tree->data);
     }
 }
 
-void deltree(node *tree)
+void delTree(node *tree)
 {
     if (tree){
-        deltree(tree->left);
-        deltree(tree->right);
+        delTree(tree->left);
+        delTree(tree->right);
         free(tree);
     }
 }
