@@ -16,12 +16,12 @@ struct node
 typedef struct node NODE;
 typedef NODE *BTREE;
  
-BTREE newnode(void);
-BTREE init_node(DATA d, BTREE p1, BTREE p2);
-BTREE create_tree(DATA a[], int i, int size);
+BTREE newNode(void);
+BTREE initNode(DATA d, BTREE p1, BTREE p2);
+BTREE createTree(DATA a[], int i, int size);
 void preorder (BTREE root);
-void inorder (BTREE root);
-void postorder (BTREE root);
+void inOrder (BTREE root);
+void postOrder (BTREE root);
  
 
 int main(void)
@@ -29,48 +29,50 @@ int main(void)
     char a[ARRAY_SIZE] = {'g','d','i','b','f','h','j','a','c','e'};
     BTREE root;
  
-    root = create_tree(a, 0, ARRAY_SIZE) ;
+    root = createTree(a, 0, ARRAY_SIZE) ;
     assert(root != NULL);
-    printf("PREORDER\n");
+
+    printf("Preorder\n");
     preorder(root);
     printf("\n");
-    printf("INORDER\n");
-    inorder(root);
+
+    printf("Inorder\n");
+    inOrder(root);
     printf("\n");
  
-    printf("POSTORDER\n");
-    postorder(root);
+    printf("Postorder\n");
+    postOrder(root);
     printf("\n");
 }
 
-BTREE new_node()
+BTREE newNode()
 {
     return ((BTREE)malloc(sizeof(NODE)));
 }
  
-BTREE init_node(DATA d1, BTREE p1, BTREE p2)
+BTREE initNode(DATA d1, BTREE p1, BTREE p2)
 {
     BTREE t;
  
-    t = new_node();
+    t = newNode();
     t->d = d1;
     t->left = p1;
     t->right = p2;
     return t;
 }
  
-BTREE create_tree(DATA a[], int i, int size)
+BTREE createTree(DATA a[], int i, int size)
 {
     if (i >= size)
         return NULL;
     else
-        return(init_node(a[i],
-    create_tree(a, 2*i+1, size),
-    create_tree(a, 2*i+2, size)));
+        return(initNode(a[i],
+    createTree(a, 2*i+1, size),
+    createTree(a, 2*i+2, size)));
 }
  
 
-void preorder (BTREE root)
+void preorder(BTREE root)
 {
     if (root != NULL) {
         printf("%c ", root->d);
@@ -80,21 +82,21 @@ void preorder (BTREE root)
 }
  
 
-void inorder (BTREE root)
+void inOrder(BTREE root)
 {
     if (root != NULL) {
-        inorder(root -> left);
+        inOrder(root -> left);
         printf("%c ", root->d);
-        inorder(root -> right);
+        inOrder(root -> right);
     }
 }
  
  
-void postorder (BTREE root)
+void postOrder (BTREE root)
 {
     if (root != NULL) {
-        postorder(root -> left);
-        postorder(root -> right);
+        postOrder(root -> left);
+        postOrder(root -> right);
         printf("%c ", root->d);
     }
 }
