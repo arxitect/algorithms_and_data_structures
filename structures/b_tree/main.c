@@ -3,37 +3,33 @@
 #include <stdlib.h>
 
 #define ARRAY_SIZE 10
-
-typedef char DATA;
  
 struct node
 {
-    DATA d;
+    char d;
     struct node *left;
     struct node *right;
 };
  
-typedef struct node NODE;
-typedef NODE *BTREE;
  
-BTREE newNode(void);
-BTREE initNode(DATA d, BTREE p1, BTREE p2);
-BTREE createTree(DATA a[], int i, int size);
-void preorder (BTREE root);
-void inOrder (BTREE root);
-void postOrder (BTREE root);
+struct node *newNode(void);
+struct node *initNode(char d, struct node *p1, struct node *p2);
+struct node *createTree(char a[], int i, int size);
+void preOrder (struct node * root);
+void inOrder (struct node * root);
+void postOrder (struct node * root);
  
 
 int main(void)
 {
     char a[ARRAY_SIZE] = {'g','d','i','b','f','h','j','a','c','e'};
-    BTREE root;
+    struct node * root;
  
     root = createTree(a, 0, ARRAY_SIZE) ;
     assert(root != NULL);
 
     printf("Preorder\n");
-    preorder(root);
+    preOrder(root);
     printf("\n");
 
     printf("Inorder\n");
@@ -45,14 +41,16 @@ int main(void)
     printf("\n");
 }
 
-BTREE newNode()
+/*newNode: allocate memory for new node*/
+struct node *newNode()
 {
-    return ((BTREE)malloc(sizeof(NODE)));
+    return ((struct node *)malloc(sizeof(struct node)));
 }
  
-BTREE initNode(DATA d1, BTREE p1, BTREE p2)
+/*initNode: initialize new node*/
+struct node *initNode(char d1, struct node *p1, struct node *p2)
 {
-    BTREE t;
+    struct node * t;
  
     t = newNode();
     t->d = d1;
@@ -61,28 +59,27 @@ BTREE initNode(DATA d1, BTREE p1, BTREE p2)
     return t;
 }
  
-BTREE createTree(DATA a[], int i, int size)
+/*createTree: create new tree*/
+struct node *createTree(char a[], int i, int size)
 {
     if (i >= size)
         return NULL;
     else
-        return(initNode(a[i],
-    createTree(a, 2*i+1, size),
-    createTree(a, 2*i+2, size)));
+        return (initNode(a[i], createTree(a, 2*i+1, size), createTree(a, 2*i+2, size)));
 }
  
-
-void preorder(BTREE root)
+/*preOrder: print tree*/
+void preOrder(struct node * root)
 {
     if (root != NULL) {
         printf("%c ", root->d);
-        preorder(root -> left);
-        preorder(root -> right);
+        preOrder(root -> left);
+        preOrder(root -> right);
     }
 }
  
-
-void inOrder(BTREE root)
+/*inOrder: print tree*/
+void inOrder(struct node * root)
 {
     if (root != NULL) {
         inOrder(root -> left);
@@ -91,8 +88,8 @@ void inOrder(BTREE root)
     }
 }
  
- 
-void postOrder (BTREE root)
+ /*postOrder: print tree*/
+void postOrder (struct node * root)
 {
     if (root != NULL) {
         postOrder(root -> left);
