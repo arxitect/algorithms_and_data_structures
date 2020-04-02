@@ -9,22 +9,22 @@ struct node {
     struct node* sibling;
 };
  
-struct node* MAKE_bin_HEAP();
-int bin_LINK(struct node*, struct node*);
-struct node* CREATE_NODE(int);
-struct node* bin_HEAP_UNION(struct node*, struct node*);
-struct node* bin_HEAP_INSERT(struct node*, struct node*);
-struct node* bin_HEAP_MERGE(struct node*, struct node*);
-struct node* bin_HEAP_EXTRACT_MIN(struct node*);
-int REVERT_LIST(struct node*);
-int DISPLAY(struct node*);
-struct node* FIND_NODE(struct node*, int);
-int bin_HEAP_DECREASE_KEY(struct node*, int, int);
-int bin_HEAP_DELETE(struct node*, int);
+struct node* MakeBinHeap();
+int binLink(struct node*, struct node*);
+struct node* CreateNode(int);
+struct node* binHeapUnion(struct node*, struct node*);
+struct node* binHeapInsert(struct node*, struct node*);
+struct node* binHeapMerge(struct node*, struct node*);
+struct node* binHeapExtractMin(struct node*);
+int revertList(struct node*);
+int display(struct node*);
+struct node* findNode(struct node*, int);
+int binHeapDecreaseKey(struct node*, int, int);
+int binHeapDelete(struct node*, int);
  
 int count = 1;
  
-struct node* MAKE_bin_HEAP() {
+struct node* MakeBinHeap() {
     struct node* np;
     np = NULL;
     return np;
@@ -33,7 +33,7 @@ struct node* MAKE_bin_HEAP() {
 struct node * H = NULL;
 struct node *Hr = NULL;
  
-int bin_LINK(struct node* y, struct node* z) 
+int binLink(struct node* y, struct node* z) 
 {
     y->parent = z;
     y->sibling = z->child;
@@ -41,7 +41,7 @@ int bin_LINK(struct node* y, struct node* z)
     z->degree = z->degree + 1;
 }
  
-struct node* CREATE_NODE(int k) 
+struct node* CreateNode(int k) 
 {
     struct node* p;//new node;
     p = (struct node*) malloc(sizeof(struct node));
@@ -49,13 +49,13 @@ struct node* CREATE_NODE(int k)
     return p;
 }
  
-struct node* bin_HEAP_UNION(struct node* H1, struct node* H2) 
+struct node* binHeapUnion(struct node* H1, struct node* H2) 
 {
     struct node* prev_x;
     struct node* next_x;
     struct node* x;
-    struct node* H = MAKE_bin_HEAP();
-    H = bin_HEAP_MERGE(H1, H2);
+    struct node* H = MakeBinHeap();
+    H = binHeapMerge(H1, H2);
     if (H == NULL)
         return H;
     prev_x = NULL;
@@ -69,13 +69,13 @@ struct node* bin_HEAP_UNION(struct node* H1, struct node* H2)
         } else {
             if (x->n <= next_x->n) {
                 x->sibling = next_x->sibling;
-                bin_LINK(next_x, x);
+                binLink(next_x, x);
             } else {
                 if (prev_x == NULL)
                     H = next_x;
                 else
                     prev_x->sibling = next_x;
-                bin_LINK(x, next_x);
+                binLink(x, next_x);
                 x = next_x;
             }
         }
@@ -84,21 +84,21 @@ struct node* bin_HEAP_UNION(struct node* H1, struct node* H2)
     return H;
 }
  
-struct node* bin_HEAP_INSERT(struct node* H, struct node* x) 
+struct node* binHeapInsert(struct node* H, struct node* x) 
 {
-    struct node* H1 = MAKE_bin_HEAP();
+    struct node* H1 = MakeBinHeap();
     x->parent = NULL;
     x->child = NULL;
     x->sibling = NULL;
     x->degree = 0;
     H1 = x;
-    H = bin_HEAP_UNION(H, H1);
+    H = binHeapUnion(H, H1);
     return H;
 }
  
-struct node* bin_HEAP_MERGE(struct node* H1, struct node* H2) 
+struct node* binHeapMerge(struct node* H1, struct node* H2) 
 {
-    struct node* H = MAKE_bin_HEAP();
+    struct node* H = MakeBinHeap();
     struct node* y;
     struct node* z;
     struct node* a;
@@ -131,7 +131,7 @@ struct node* bin_HEAP_MERGE(struct node* H1, struct node* H2)
     return H;
 }
  
-int DISPLAY(struct node* H) 
+int display(struct node* H) 
 {
     struct node* p;
     if (H == NULL) {
@@ -149,7 +149,7 @@ int DISPLAY(struct node* H)
     printf("\n");
 }
  
-struct node* bin_HEAP_EXTRACT_MIN(struct node* H1) 
+struct node* binHeapExtractMin(struct node* H1) 
 {
     int min;
     struct node* t = NULL;
@@ -180,24 +180,24 @@ struct node* bin_HEAP_EXTRACT_MIN(struct node* H1)
     else
         t->sibling = x->sibling;
     if (x->child != NULL) {
-        REVERT_LIST(x->child);
+        revertList(x->child);
         (x->child)->sibling = NULL;
     }
-    H = bin_HEAP_UNION(H1, Hr);
+    H = binHeapUnion(H1, Hr);
     return x;
 }
  
-int REVERT_LIST(struct node* y) 
+int revertList(struct node* y) 
 {
     if (y->sibling != NULL) {
-        REVERT_LIST(y->sibling);
+        revertList(y->sibling);
         (y->sibling)->sibling = y;
     } else {
         Hr = y;
     }
 }
  
-struct node* FIND_NODE(struct node* H, int k) 
+struct node* findNode(struct node* H, int k) 
 {
     struct node* x = H;
     struct node* p = NULL;
@@ -206,22 +206,22 @@ struct node* FIND_NODE(struct node* H, int k)
         return p;
     }
     if (x->child != NULL && p == NULL) {
-        p = FIND_NODE(x->child, k);
+        p = findNode(x->child, k);
     }
  
     if (x->sibling != NULL && p == NULL) {
-        p = FIND_NODE(x->sibling, k);
+        p = findNode(x->sibling, k);
     }
     return p;
 }
  
-int bin_HEAP_DECREASE_KEY(struct node* H, int i, int k) 
+int binHeapDecreaseKey(struct node* H, int i, int k) 
 {
     int temp;
     struct node* p;
     struct node* y;
     struct node* z;
-    p = FIND_NODE(H, i);
+    p = findNode(H, i);
     if (p == NULL) {
         printf("\nINVALID CHOICE OF KEY TO BE REDUCED");
         return 0;
@@ -243,7 +243,7 @@ int bin_HEAP_DECREASE_KEY(struct node* H, int i, int k)
     printf("\nKEY REDUCED SUCCESSFULLY!");
 }
  
-int bin_HEAP_DELETE(struct node* H, int k) 
+int binHeapDelete(struct node* H, int k) 
 {
     struct node* np;
     if (H == NULL) {
@@ -251,8 +251,8 @@ int bin_HEAP_DELETE(struct node* H, int k)
         return 0;
     }
  
-    bin_HEAP_DECREASE_KEY(H, k, -1000);
-    np = bin_HEAP_EXTRACT_MIN(H);
+    binHeapDecreaseKey(H, k, -1000);
+    np = binHeapExtractMin(H);
     if (np != NULL)
         printf("\nNODE DELETED SUCCESSFULLY");
 }
@@ -267,10 +267,10 @@ int main() {
     printf("\nENTER THE ELEMENTS:\n");
     for (i = 1; i <= n; i++) {
         scanf("%d", &m);
-        np = CREATE_NODE(m);
-        H = bin_HEAP_INSERT(H, np);
+        np = CreateNode(m);
+        H = binHeapInsert(H, np);
     }
-    DISPLAY(H);
+    display(H);
     do {
         printf("\nMENU:-\n");
         printf(
@@ -281,10 +281,10 @@ int main() {
             do {
                 printf("\nENTER THE ELEMENT TO BE INSERTED:");
                 scanf("%d", &m);
-                p = CREATE_NODE(m);
-                H = bin_HEAP_INSERT(H, p);
+                p = CreateNode(m);
+                H = binHeapInsert(H, p);
                 printf("\nNOW THE HEAP IS:\n");
-                DISPLAY(H);
+                display(H);
                 printf("\nINSERT MORE(y/Y)= \n");
                 fflush(stdin);
                 scanf("%c", &ch);
@@ -293,11 +293,11 @@ int main() {
         case 2:
             do {
                 printf("\nEXTRACTING THE MINIMUM KEY NODE");
-                p = bin_HEAP_EXTRACT_MIN(H);
+                p = binHeapExtractMin(H);
                 if (p != NULL)
                     printf("\nTHE EXTRACTED NODE IS %d", p->n);
                 printf("\nNOW THE HEAP IS:\n");
-                DISPLAY(H);
+                display(H);
                 printf("\nEXTRACT MORE(y/Y)\n");
                 fflush(stdin);
                 scanf("%c", &ch);
@@ -309,9 +309,9 @@ int main() {
                 scanf("%d", &m);
                 printf("\nENTER THE NEW KEY : ");
                 scanf("%d", &l);
-                bin_HEAP_DECREASE_KEY(H, m, l);
+                binHeapDecreaseKey(H, m, l);
                 printf("\nNOW THE HEAP IS:\n");
-                DISPLAY(H);
+                display(H);
                 printf("\nDECREASE MORE(y/Y)\n");
                 fflush(stdin);
                 scanf("%c", &ch);
@@ -321,7 +321,7 @@ int main() {
             do {
                 printf("\nENTER THE KEY TO BE DELETED: ");
                 scanf("%d", &m);
-                bin_HEAP_DELETE(H, m);
+                binHeapDelete(H, m);
                 printf("\nDELETE MORE(y/Y)\n");
                 fflush(stdin);
                 scanf("%c", &ch);
