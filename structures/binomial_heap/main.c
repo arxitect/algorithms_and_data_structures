@@ -2,16 +2,16 @@
 #include <malloc.h>
  
 struct node {
-    int n;
-    int degree;
-    struct node* parent;
-    struct node* child;
-    struct node* sibling;
+    int n; 
+    int degree;//count of child elements of node
+    struct node* parent; //pointer to parent node
+    struct node* child; //pointer to child node
+    struct node* sibling; //pointer to right brother of node
 };
  
-struct node* MakeBinHeap();
+struct node* makeBinHeap();
 int binLink(struct node*, struct node*);
-struct node* CreateNode(int);
+struct node* createNode(int);
 struct node* binHeapUnion(struct node*, struct node*);
 struct node* binHeapInsert(struct node*, struct node*);
 struct node* binHeapMerge(struct node*, struct node*);
@@ -24,15 +24,96 @@ int binHeapDelete(struct node*, int);
  
 int count = 1;
  
-struct node* MakeBinHeap() {
+struct node * H = NULL;
+struct node *Hr = NULL;
+ 
+ 
+int main() {
+    int i, n, m, l;
+    struct node* p;
+    struct node* np;
+    char ch;
+    printf("\nENTER THE NUMBER OF ELEMENTS:");
+    scanf("%d", &n);
+    printf("\nENTER THE ELEMENTS:\n");
+    for (i = 1; i <= n; i++) {
+        scanf("%d", &m);
+        np = createNode(m);
+        H = binHeapInsert(H, np);
+    }
+    display(H);
+    do {
+        printf("\nMENU:-\n");
+        printf(
+                "\n1)INSERT AN ELEMENT\n2)EXTRACT THE MINIMUM KEY NODE\n3)DECREASE A NODE KEY\n 4)DELETE A NODE\n5)QUIT\n");
+        scanf("%d", &l);
+        switch (l) {
+        case 1:
+            do {
+                printf("\nENTER THE ELEMENT TO BE INSERTED:");
+                scanf("%d", &m);
+                p = createNode(m);
+                H = binHeapInsert(H, p);
+                printf("\nNOW THE HEAP IS:\n");
+                display(H);
+                printf("\nINSERT MORE(y/Y)= \n");
+                fflush(stdin);
+                scanf("%c", &ch);
+            } while (ch == 'Y' || ch == 'y');
+            break;
+        case 2:
+            do {
+                printf("\nEXTRACTING THE MINIMUM KEY NODE");
+                p = binHeapExtractMin(H);
+                if (p != NULL)
+                    printf("\nTHE EXTRACTED NODE IS %d", p->n);
+                printf("\nNOW THE HEAP IS:\n");
+                display(H);
+                printf("\nEXTRACT MORE(y/Y)\n");
+                fflush(stdin);
+                scanf("%c", &ch);
+            } while (ch == 'Y' || ch == 'y');
+            break;
+        case 3:
+            do {
+                printf("\nENTER THE KEY OF THE NODE TO BE DECREASED:");
+                scanf("%d", &m);
+                printf("\nENTER THE NEW KEY : ");
+                scanf("%d", &l);
+                binHeapDecreaseKey(H, m, l);
+                printf("\nNOW THE HEAP IS:\n");
+                display(H);
+                printf("\nDECREASE MORE(y/Y)\n");
+                fflush(stdin);
+                scanf("%c", &ch);
+            } while (ch == 'Y' || ch == 'y');
+            break;
+        case 4:
+            do {
+                printf("\nENTER THE KEY TO BE DELETED: ");
+                scanf("%d", &m);
+                binHeapDelete(H, m);
+                printf("\nDELETE MORE(y/Y)\n");
+                fflush(stdin);
+                scanf("%c", &ch);
+            } while (ch == 'y' || ch == 'Y');
+            break;
+        case 5:
+            printf("\nTHANK U SIR\n");
+            break;
+        default:
+            printf("\nINVALID ENTRY...TRY AGAIN....\n");
+        }
+    } while (l != 5);
+}
+
+struct node* makeBinHeap() 
+{
     struct node* np;
     np = NULL;
     return np;
 }
- 
-struct node * H = NULL;
-struct node *Hr = NULL;
- 
+
 int binLink(struct node* y, struct node* z) 
 {
     y->parent = z;
@@ -41,7 +122,7 @@ int binLink(struct node* y, struct node* z)
     z->degree = z->degree + 1;
 }
  
-struct node* CreateNode(int k) 
+struct node* createNode(int k) 
 {
     struct node* p;//new node;
     p = (struct node*) malloc(sizeof(struct node));
@@ -54,7 +135,7 @@ struct node* binHeapUnion(struct node* H1, struct node* H2)
     struct node* prev_x;
     struct node* next_x;
     struct node* x;
-    struct node* H = MakeBinHeap();
+    struct node* H = makeBinHeap();
     H = binHeapMerge(H1, H2);
     if (H == NULL)
         return H;
@@ -86,7 +167,7 @@ struct node* binHeapUnion(struct node* H1, struct node* H2)
  
 struct node* binHeapInsert(struct node* H, struct node* x) 
 {
-    struct node* H1 = MakeBinHeap();
+    struct node* H1 = makeBinHeap();
     x->parent = NULL;
     x->child = NULL;
     x->sibling = NULL;
@@ -98,7 +179,7 @@ struct node* binHeapInsert(struct node* H, struct node* x)
  
 struct node* binHeapMerge(struct node* H1, struct node* H2) 
 {
-    struct node* H = MakeBinHeap();
+    struct node* H = makeBinHeap();
     struct node* y;
     struct node* z;
     struct node* a;
@@ -255,83 +336,4 @@ int binHeapDelete(struct node* H, int k)
     np = binHeapExtractMin(H);
     if (np != NULL)
         printf("\nNODE DELETED SUCCESSFULLY");
-}
- 
-int main() {
-    int i, n, m, l;
-    struct node* p;
-    struct node* np;
-    char ch;
-    printf("\nENTER THE NUMBER OF ELEMENTS:");
-    scanf("%d", &n);
-    printf("\nENTER THE ELEMENTS:\n");
-    for (i = 1; i <= n; i++) {
-        scanf("%d", &m);
-        np = CreateNode(m);
-        H = binHeapInsert(H, np);
-    }
-    display(H);
-    do {
-        printf("\nMENU:-\n");
-        printf(
-                "\n1)INSERT AN ELEMENT\n2)EXTRACT THE MINIMUM KEY NODE\n3)DECREASE A NODE KEY\n 4)DELETE A NODE\n5)QUIT\n");
-        scanf("%d", &l);
-        switch (l) {
-        case 1:
-            do {
-                printf("\nENTER THE ELEMENT TO BE INSERTED:");
-                scanf("%d", &m);
-                p = CreateNode(m);
-                H = binHeapInsert(H, p);
-                printf("\nNOW THE HEAP IS:\n");
-                display(H);
-                printf("\nINSERT MORE(y/Y)= \n");
-                fflush(stdin);
-                scanf("%c", &ch);
-            } while (ch == 'Y' || ch == 'y');
-            break;
-        case 2:
-            do {
-                printf("\nEXTRACTING THE MINIMUM KEY NODE");
-                p = binHeapExtractMin(H);
-                if (p != NULL)
-                    printf("\nTHE EXTRACTED NODE IS %d", p->n);
-                printf("\nNOW THE HEAP IS:\n");
-                display(H);
-                printf("\nEXTRACT MORE(y/Y)\n");
-                fflush(stdin);
-                scanf("%c", &ch);
-            } while (ch == 'Y' || ch == 'y');
-            break;
-        case 3:
-            do {
-                printf("\nENTER THE KEY OF THE NODE TO BE DECREASED:");
-                scanf("%d", &m);
-                printf("\nENTER THE NEW KEY : ");
-                scanf("%d", &l);
-                binHeapDecreaseKey(H, m, l);
-                printf("\nNOW THE HEAP IS:\n");
-                display(H);
-                printf("\nDECREASE MORE(y/Y)\n");
-                fflush(stdin);
-                scanf("%c", &ch);
-            } while (ch == 'Y' || ch == 'y');
-            break;
-        case 4:
-            do {
-                printf("\nENTER THE KEY TO BE DELETED: ");
-                scanf("%d", &m);
-                binHeapDelete(H, m);
-                printf("\nDELETE MORE(y/Y)\n");
-                fflush(stdin);
-                scanf("%c", &ch);
-            } while (ch == 'y' || ch == 'Y');
-            break;
-        case 5:
-            printf("\nTHANK U SIR\n");
-            break;
-        default:
-            printf("\nINVALID ENTRY...TRY AGAIN....\n");
-        }
-    } while (l != 5);
 }
