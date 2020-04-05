@@ -9,6 +9,10 @@ struct node {
     struct node* sibling; //pointer to right brother of node
 };
  
+makeBinomialHeap();
+binomialHeapMinimum();
+binomialHeapUnion();
+
 int main()
 {
     
