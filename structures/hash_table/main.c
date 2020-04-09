@@ -24,7 +24,6 @@ int main()
     int choice, key, data, n;
     int c = 0;
     initArray();
-
     do{
         printf("1.Insert item in the Hash Table"
             "\n2.Remove item from the Hash Table"
@@ -35,19 +34,19 @@ int main()
         scanf("%d", &choice);
         switch (choice){
             case 1:
-                printf("Enter key -:\t");
+                printf("Enter key :\t");
                 scanf("%d", &key);
-                printf("Enter data -:\t");
+                printf("Enter data :\t");
                 scanf("%d", &data);
                 insert(key, data);
                 break;
             case 2:
-                printf("Enter the key to delete-:");
+                printf("Enter the key to delete:");
                 scanf("%d", &key);
                 removeElement(key);
                 break;
             case 3:
-                printf("Size of Hash Table is-:%d\n", size);
+                printf("Size of Hash Table is:%d\n", size);
                 break;
             case 4:
                 display();
@@ -67,15 +66,12 @@ int hashFunction(int key)
 
 int checkPrime(int n)
 {
-    int i;
-    if (n == 1 || n == 0){
+    if (n == 1 || n == 0)
         return 0;
-    }
 
-    for (i = 2; i < n / 2; i++){
-        if (n % i == 0){
+    for (int i = 2; i < n / 2; i++){
+        if (n % i == 0)
             return 0;
-        }
     }
 
     return 1;
@@ -83,13 +79,11 @@ int checkPrime(int n)
 
 int getPrime(int n)
 {
-    if(n % 2 == 0){
+    if(n % 2 == 0)
         n++;
-    }
 
-    while(!checkPrime(n)){
+    while(!checkPrime(n))
         n += 2;
-    }
 
     return n;
 }
@@ -114,19 +108,19 @@ void insert(int key, int data)
         array[index].data = data;
         size++;
         printf("\n Key (%d) has been inserted \n", key);
-    }else if (array[index].key == key){
+    }else if (array[index].key == key)
         array[index].data = data;
-    }else{
+    else
         printf("\n Collision occured  \n");
-    }
+
 }
 
 void removeElement(int key)
 {
     int index = hashFunction(key);
-    if (array[index].data == 0){
+    if (array[index].data == 0)
         printf("\n This key does not exist \n");
-    }else{
+    else{
         array[index].key = 0;
         array[index].data = 0;
         size--;
@@ -136,12 +130,10 @@ void removeElement(int key)
 
 void display()
 {
-    int i;
-    for (i = 0; i < capacity; i++){
-        if (array[i].data == 0){
-            printf("\n array[%d]: / ", i);
-        }else{
+    for (int i = 0; i < capacity; i++){
+        if (array[i].data == 0)
+            printf("\n array[%d]: empty ", i);
+        else
             printf("\n key: %d array[%d]: %d \t", array[i].key, i, array[i].data);
-        }
     }
 }
