@@ -15,13 +15,13 @@ void insert(int key, int data);
 void removeElement(int key);
 void display();
 
-struct set *array;
-int capacity = 10;
-int size = 0;
+struct set *array; // pointer for storage data
+int capacity = 10; // max size of arr
+int size = 0; // size of arr
 
 int main()
 {
-    int choice, key, data, n;
+    int choice, key, data;
     int c = 0;
     initArray();
     do{
@@ -58,12 +58,12 @@ int main()
         scanf("%d", &c);
   }while (c == 1);
 }
-
+/*hashFunction: */
 int hashFunction(int key)
 {
     return (key % capacity);
 }
-
+/*checkPrime: */
 int checkPrime(int n)
 {
     if (n == 1 || n == 0)
@@ -76,7 +76,7 @@ int checkPrime(int n)
 
     return 1;
 }
-
+/*getPrime: */
 int getPrime(int n)
 {
     if(n % 2 == 0)
@@ -87,7 +87,7 @@ int getPrime(int n)
 
     return n;
 }
-
+/*initArray: initialize empty array*/
 void initArray()
 {
     capacity = getPrime(capacity);
@@ -98,7 +98,7 @@ void initArray()
         array[i].data = 0;
     }
 }
-
+/*insert: */
 void insert(int key, int data)
 {
     int index = hashFunction(key);
@@ -114,7 +114,7 @@ void insert(int key, int data)
         printf("\n Collision occured  \n");
 
 }
-
+/*removeElement: */
 void removeElement(int key)
 {
     int index = hashFunction(key);
@@ -127,7 +127,7 @@ void removeElement(int key)
         printf("\n Key (%d) has been removed \n", key);
     }
 }
-
+/*display: display elements of array*/
 void display()
 {
     for (int i = 0; i < capacity; i++){
