@@ -25,12 +25,11 @@ int main()
     int c = 0;
     initArray();
     do{
-        printf("1.Insert item in the Hash Table"
-            "\n2.Remove item from the Hash Table"
-            "\n3.Check the size of Hash Table"
-            "\n4.Display a Hash Table"
-            "\n\n Please enter your choice: ");
-
+        printf("1.Insert item in the Hash Table\n"
+                      "2.Remove item from the Hash Table\n"
+                      "3.Check the size of Hash Table\n"
+                      "4.Display a Hash Table\n\n"
+                      "Please enter your choice: ");
         scanf("%d", &choice);
         switch (choice){
             case 1:
@@ -58,12 +57,12 @@ int main()
         scanf("%d", &c);
   }while (c == 1);
 }
-/*hashFunction: */
+/*hashFunction: return hash of key*/
 int hashFunction(int key)
 {
     return (key % capacity);
 }
-/*checkPrime: */
+/*checkPrime: to check if given input (i.e n) is prime or not*/
 int checkPrime(int n)
 {
     if (n == 1 || n == 0)
@@ -76,7 +75,8 @@ int checkPrime(int n)
 
     return 1;
 }
-/*getPrime: */
+
+/*getPrime: returns prime number just greater than array capacity*/
 int getPrime(int n)
 {
     if(n % 2 == 0)
@@ -87,6 +87,7 @@ int getPrime(int n)
 
     return n;
 }
+
 /*initArray: initialize empty array*/
 void initArray()
 {
@@ -98,7 +99,8 @@ void initArray()
         array[i].data = 0;
     }
 }
-/*insert: */
+
+/*insert: insert new element of array*/
 void insert(int key, int data)
 {
     int index = hashFunction(key);
@@ -114,7 +116,8 @@ void insert(int key, int data)
         printf("\n Collision occured  \n");
 
 }
-/*removeElement: */
+
+/*removeElement: remove element of array*/
 void removeElement(int key)
 {
     int index = hashFunction(key);
@@ -127,6 +130,7 @@ void removeElement(int key)
         printf("\n Key (%d) has been removed \n", key);
     }
 }
+
 /*display: display elements of array*/
 void display()
 {
