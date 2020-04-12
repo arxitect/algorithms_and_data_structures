@@ -6,17 +6,17 @@
 
 struct node
 {
-    int data;
-    char color;
-    struct node *left, *right, *parent;
+    int data; // data of node
+    char color; // color of node: red or black
+    struct node *left, *right, *parent; // children and parent
 };
 
-void LeftRotate(struct node **root,struct node *x);
+void leftRotate(struct node **root,struct node *x);
 void rightRotate(struct node **root,struct node *y);
 void insertFixUp(struct node **root,struct node *z);
 void insertFixUp(struct node **root,struct node *z);
 void insert(struct node **root, int data);
-void inorder(struct node *root);
+void inOrder(struct node *root);
 
 int main()
 {
@@ -27,8 +27,9 @@ int main()
     for (int i = 0; i < NB_ELEMS; ++i)
         insert(&root, random());
     clock_t t1 = clock();
-    printf("inorder Traversal Is :\n");
-    inorder(root);
+
+    printf("inOrder Traversal Is :\n");
+    inOrder(root);
     printf("\n");
     float time_taken = (float)(t1 - t0) / CLOCKS_PER_SEC * 1000;
     printf("insertion took %fms -> %fus/elem\n",
@@ -38,10 +39,11 @@ int main()
     return 0;
 }
 
-void LeftRotate(struct node **root,struct node *x)
+void leftRotate(struct node **root,struct node *x)
 {
     if (!x || !x->right)
         return ;
+
     struct node *y = x->right;
 
     x->right = y->left;
@@ -56,7 +58,8 @@ void LeftRotate(struct node **root,struct node *x)
 
     else if (x == x->parent->left)
         x->parent->left = y;
-    else    x->parent->right = y;
+    else
+        x->parent->right = y;
 
     y->left = x;
 
@@ -68,20 +71,26 @@ void rightRotate(struct node **root,struct node *y)
 {
     if (!y || !y->left)
         return ;
+
     struct node *x = y->left;
     y->left = x->right;
+
     if (x->right != NULL)
         x->right->parent = y;
+
     x->parent =y->parent;
+
     if (x->parent == NULL)
         (*root) = x;
     else if (y == y->parent->left)
         y->parent->left = x;
-    else y->parent->right = x;
+    else
+        y->parent->right = x;
+
     x->right = y;
     y->parent = x;
 }
-
+/*insertFixUp: */
 void insertFixUp(struct node **root,struct node *z)
 {
     while (z != *root && z != (*root)->left && z != (*root)->right && z->parent->color == 'R'){
@@ -101,11 +110,9 @@ void insertFixUp(struct node **root,struct node *z)
             z = z->parent->parent;
         }
 
-        else
-        {
+        else {
             if (z->parent == z->parent->parent->left &&
-                z == z->parent->left)
-            {
+                z == z->parent->left) {
                 char ch = z->parent->color ;
                 z->parent->color = z->parent->parent->color;
                 z->parent->parent->color = ch;
@@ -113,46 +120,48 @@ void insertFixUp(struct node **root,struct node *z)
             }
 
             if (z->parent && z->parent->parent && z->parent == z->parent->parent->left &&
-                z == z->parent->right){
+                z == z->parent->right) {
                 char ch = z->color ;
                 z->color = z->parent->parent->color;
                 z->parent->parent->color = ch;
-                LeftRotate(root,z->parent);
+                leftRotate(root,z->parent);
                 rightRotate(root,z->parent->parent);
             }
 
             if (z->parent && z->parent->parent &&
                 z->parent == z->parent->parent->right &&
-                z == z->parent->right){
+                z == z->parent->right) {
                 char ch = z->parent->color ;
                 z->parent->color = z->parent->parent->color;
                 z->parent->parent->color = ch;
-                LeftRotate(root,z->parent->parent);
+                leftRotate(root,z->parent->parent);
             }
 
             if (z->parent && z->parent->parent && z->parent == z->parent->parent->right &&
-                z == z->parent->left){
+                z == z->parent->left) {
                 char ch = z->color ;
                 z->color = z->parent->parent->color;
                 z->parent->parent->color = ch;
                 rightRotate(root,z->parent);
-                LeftRotate(root,z->parent->parent);
+                leftRotate(root,z->parent->parent);
             }
         }
     }
     (*root)->color = 'B'; 
 }
 
+/*insert: insert new node of tree*/
 void insert(struct node **root, int data)
 {
     struct node *z = (struct node*)malloc(sizeof(struct node));
+
     z->data = data;
     z->left = z->right = z->parent = NULL;
 
     if (*root == NULL){
         z->color = 'B';
         (*root) = z;
-    }else{
+    }else {
         struct node *y = NULL;
         struct node *x = (*root);
 
@@ -163,26 +172,30 @@ void insert(struct node **root, int data)
             else
                 x = x->right;
         }
+
         z->parent = y;
         if (z->data > y->data)
             y->right = z;
         else
             y->left = z;
-        z->color = 'R';
 
+        z->color = 'R';
         insertFixUp(root,z);
     }
 }
 
-void inorder(struct node *root)
+void inOrder(struct node *root)
 {
     static int last = 0;
     if (root == NULL)
         return;
-    inorder(root->left);
+
+    inOrder(root->left);
     printf("%d ", root->data);
+
     if (root->data < last)
         printf("\nPUTE\n");
+
     last = root->data;
-    inorder(root->right);
+    inOrder(root->right);
 }
