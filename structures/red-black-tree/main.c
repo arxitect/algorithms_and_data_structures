@@ -4,6 +4,7 @@
 
 #define NB_ELEMS 250
 
+//node structure
 struct node
 {
     int data; // data of node
@@ -39,23 +40,26 @@ int main()
     return 0;
 }
 
+/*leftRotate: left rotation*/
 void leftRotate(struct node **root,struct node *x)
 {
     if (!x || !x->right)
         return ;
 
+    //y stored pointer of right child of x
     struct node *y = x->right;
 
     x->right = y->left;
 
+    //update parent pointer 
     if (x->right != NULL)
         x->right->parent = x;
 
     y->parent = x->parent;
 
+    //if x is NULL make y as root
     if (x->parent == NULL)
         (*root) = y;
-
     else if (x == x->parent->left)
         x->parent->left = y;
     else
@@ -66,7 +70,7 @@ void leftRotate(struct node **root,struct node *x)
     x->parent = y;
 }
 
-
+/*rightRotate: similar leftRotate*/
 void rightRotate(struct node **root,struct node *y)
 {
     if (!y || !y->left)
@@ -90,7 +94,8 @@ void rightRotate(struct node **root,struct node *y)
     x->right = y;
     y->parent = x;
 }
-/*insertFixUp: */
+
+/*insertFixUp: fix tree after insertion */
 void insertFixUp(struct node **root,struct node *z)
 {
     while (z != *root && z != (*root)->left && z != (*root)->right && z->parent->color == 'R'){
@@ -108,9 +113,7 @@ void insertFixUp(struct node **root,struct node *z)
             z->parent->color = 'B';
             z->parent->parent->color = 'R';
             z = z->parent->parent;
-        }
-
-        else {
+        }else{
             if (z->parent == z->parent->parent->left &&
                 z == z->parent->left) {
                 char ch = z->parent->color ;
@@ -183,7 +186,7 @@ void insert(struct node **root, int data)
         insertFixUp(root,z);
     }
 }
-
+/*inOrder: traverse tree in order*/
 void inOrder(struct node *root)
 {
     static int last = 0;
