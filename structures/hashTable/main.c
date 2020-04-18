@@ -19,7 +19,7 @@ struct set *array; // pointer for storage data
 int capacity = 10; // max size of arr
 int size = 0; // size of arr
 
-int main()
+void main()
 {
     int choice, key, data;
     int c = 0;
@@ -113,7 +113,7 @@ void insert(int key, int data)
     }else if (array[index].key == key)
         array[index].data = data;
     else
-        printf("\n Collision occured  \n");
+        printf("\n Collision occurred  \n");
 
 }
 

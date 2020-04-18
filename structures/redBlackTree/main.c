@@ -15,11 +15,10 @@ struct node
 void leftRotate(struct node **root,struct node *x);
 void rightRotate(struct node **root,struct node *y);
 void insertFixUp(struct node **root,struct node *z);
-void insertFixUp(struct node **root,struct node *z);
 void insert(struct node **root, int data);
 void inOrder(struct node *root);
 
-int main()
+void main()
 {
     srandom(time(NULL));
     struct node *root = NULL;
@@ -194,7 +193,7 @@ void inOrder(struct node *root)
         return;
 
     inOrder(root->left);
-    printf("%d ", root->data);
+    printf("%d \n", root->data);
 
     if (root->data < last)
         printf("\nPUTE\n");

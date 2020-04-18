@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include "data.h"
 
-void heappfy(int arr[], int n, int i);
 void heapSort(int arr[], int length);
+void heapify(int arr[], int n, int i);
 void swap(int *from, int *to);
 
-int main()
+void main()
 {   
-    int length = sizeof(data)/sizeof(int); // size of data
+    int length = sizeof(data) / sizeof(int); // size of data
 
     for( int i = 0; i < length; i++) // printing input data
         printf("%d ", data[i]);
@@ -51,7 +51,7 @@ void heapify(int arr[], int n, int i)
 /* heapSort: sorting array */
 void heapSort(int arr[], int length)
 {   
-    // buld heap
+    // build heap
     for (int i = length / 2 - 1; i >= 0 ; i--)
         heapify(arr, length, i);
 
@@ -60,7 +60,7 @@ void heapSort(int arr[], int length)
     {   
         // Move current root to end
         swap(&arr[0], &arr[i]);
-        // call hepify on the reduce heap
+        // call heapify on the reduce heap
         heapify(arr, i, 0);
     }
 }

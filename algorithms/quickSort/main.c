@@ -1,12 +1,11 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include "data.h"
 
 void swap(int *, int *);
 int partition (int arr[], int low, int high) ; 
 void quickSort(int arr[], int low, int high);
 
-int main()
+void main()
 {   
     int length = sizeof(data)/sizeof(int); // size of data
 
@@ -42,7 +41,7 @@ int partition (int arr[], int low, int high)
     return (i + 1); 
 } 
 
-/*quick sort*/
+/* quickSort */
 void quickSort(int arr[], int low, int high) 
 { 
     if (low < high) 

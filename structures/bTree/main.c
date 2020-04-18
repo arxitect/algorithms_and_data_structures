@@ -20,7 +20,7 @@ void inOrder (struct node * root);
 void postOrder (struct node * root);
  
 
-int main(void)
+void main(void)
 {
     char a[ARRAY_SIZE] = {'g','d','i','b','f','h','j','a','c','e'};
     struct node * root;

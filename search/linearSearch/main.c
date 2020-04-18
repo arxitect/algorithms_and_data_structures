@@ -3,7 +3,7 @@
 
 int linSearch(int[], int, int);
 
-int main()
+void main()
 {   
     int length = sizeof(data)/sizeof(int); // size of data
 

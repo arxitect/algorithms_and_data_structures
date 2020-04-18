@@ -10,15 +10,15 @@ struct node {
 //Start of list
 struct node *start = NULL;
 
-void insert_at_begin(int x);
-void insert_at_end(int x);
+void insertAtBegin(int x);
+void insertAtEnd(int x);
 void traverse();
-void delete_from_begin();
-void delete_from_end();
+void deleteFromBegin();
+void deleteFromEnd();
 
 int count = 0;
 
-int main () 
+void main ()
 {
     int i, data;
 
@@ -36,21 +36,21 @@ int main ()
             case 1:
                 printf("Enter value of element\n");
                 scanf("%d", &data);
-                insert_at_begin(data);
+                insertAtBegin(data);
                 break;
             case 2:
                 printf("Enter value of element\n");
                 scanf("%d", &data);
-                insert_at_end(data);
+                insertAtEnd(data);
                 break;
             case 3:
                 traverse();
                 break;
             case 4:
-                delete_from_begin();
+                deleteFromBegin();
                 break;
             case 5:
-                delete_from_end();
+                deleteFromEnd();
                 break;
             case 6:
                 return 0;
@@ -63,8 +63,8 @@ int main ()
     return 0;
 }
 
-/*insert_at_begin: insert element to top of list*/
-void insert_at_begin(int x) 
+/*insertAtBegin: insert element to top of list*/
+void insertAtBegin(int x) 
 {
     struct node *t;
 
@@ -82,8 +82,8 @@ void insert_at_begin(int x)
     start = t;
 }
 
-/*insert_at_end: insert element to end of list*/
-void insert_at_end(int x) 
+/*insertAtEnd: insert element to end of list*/
+void insertAtEnd(int x) 
 {
     struct node *t, *temp;
 
@@ -127,8 +127,8 @@ void traverse()
     printf("%d\n", t->data);
 }
 
-/*delete_from_begin: deleting element from top of list*/
-void delete_from_begin() 
+/*deleteFromBegin: deleting element from top of list*/
+void deleteFromBegin() 
 {
     struct node *t;
     int n;
@@ -147,8 +147,8 @@ void delete_from_begin()
     printf("%d deleted from the beginning successfully.\n", n);
 }
 
-/*delete_from_end: deleting element from end of list*/
-void delete_from_end() 
+/*deleteFromEnd: deleting element from end of list*/
+void deleteFromEnd() 
 {
     struct node *t, *u;
     int n;

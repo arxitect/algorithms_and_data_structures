@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include "data.h"
 
-int binSearch(int arr[], int pattern, int length);
+int binSearch(const int arr[], int pattern, int length);
 
-int main()
+void main()
 {   
     int length = sizeof(data)/sizeof(int); // size of data
 
@@ -21,7 +21,7 @@ int main()
 }
 
 /* binary search */
-int binSearch(int arr[], int pattern, int length)
+int binSearch(const int arr[], int pattern, int length)
 {   
     int low, mid, high;
 

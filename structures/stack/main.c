@@ -15,13 +15,13 @@ void push(void);
 void pop(void);
 void display(void);
  
-void main ()
+int main ()
 {
     int choice;
     int option = 1;
     s.top = -1;
  
-    printf ("STACK OPERATION\n");
+    printf ("STACK OPERATIONS\n");
     while (option) {
         printf ("------------------------------------------\n");
         printf ("1    -->    PUSH               \n");
@@ -43,7 +43,7 @@ void main ()
                 display();
                 break;
             case 4:
-                return;
+                return 0;
         }
         fflush (stdin);
         printf ("Do you want to continue(Type 0 or 1)?\n");

@@ -1,11 +1,11 @@
 #include <stdio.h>
-#include "data.h"
 #include <malloc.h>
+#include "data.h"
 
-void countSort(int arr[], int length);
-int getMax(const int *array, int size);
+void countSort(int array[], int length);
+int getMax(const int array[], int size);
 
-int main()
+void main()
 {
     int length = sizeof(data)/sizeof(int); // size of data
 
@@ -25,17 +25,17 @@ int main()
 }
 
 /* getMax: pull max element of array */
-int getMax(const int *array, int size)
+int getMax(const int array[], int size)
 {
-    int max = *array;
+    int max = array[0];
     for (int i = 1; i < size; i++)
-        if (*array + i > max)
-            max = *array + i;
+        if (array[i] > max)
+            max = array[i];
     return max;
 }
 
 /* count sort */
-void countSort(int* array, int length)
+void countSort(int array[], int length)
 {
     int k = getMax(array, length) + 1;
 

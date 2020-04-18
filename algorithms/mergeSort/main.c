@@ -4,7 +4,7 @@
 
 void mergeSort(int arr[], int l, int r);
 
-int main()
+void main()
 {   
     int length = sizeof(data)/sizeof(int); // size of data
 
@@ -23,31 +23,31 @@ int main()
     return 0;
 }
 
-/* merge sort */
-void mergeSort(int arr[], int l, int r)
+/* mergeSort */
+void mergeSort(int arr[], int left, int right)
 {
-    if (l == r) return; // if one elem
-    int mid = (l + r) / 2;  // mid of data
+    if (left == right)
+        return; // if one elem
 
-    mergeSort(arr, l, mid); // start merge sort first half
-    mergeSort(arr, mid + 1, r); // start merge sort seconf half
+    int mid = (left + right) / 2;  // mid of data
 
-    int i = l; 
+    mergeSort(arr, left, mid); // start merge sort first half
+    mergeSort(arr, mid + 1, right); // start merge sort second half
+
+    int *tmp = (int*)malloc(right * sizeof(int));
+    int i = left;
     int j = mid + 1;
-
-    int *tmp = (int*)malloc(r * sizeof(int)); 
-    
-    for (int step = 0; step < r - l + 1; step++){
-        if ((j > r) || ((i <= mid) && (arr[i] < arr[j]))) {
+    int step;
+    for (step = 0; step < right - left + 1; step++) {
+        if ((j > right) || ((i <= mid) && (arr[i] < arr[j]))) {
           tmp[step] = arr[i];
           i++;
-        }
-        else {
+        }else {
           tmp[step] = arr[j];
           j++;
         }
     }
     
-    for (int step = 0; step < r - l + 1; step++)
-        arr[l + step] = tmp[step];
+    for (step = 0; step < right - left + 1; step++)
+        arr[left + step] = tmp[step];
 }

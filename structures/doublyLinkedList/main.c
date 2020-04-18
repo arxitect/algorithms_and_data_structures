@@ -17,7 +17,7 @@ void insertAtTail(int x);
 void print();
 void reversePrint();
 
-int main() {
+void main() {
     insertAtHead(43); 
     print();
 
