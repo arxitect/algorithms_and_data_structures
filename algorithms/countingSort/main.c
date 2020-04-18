@@ -1,19 +1,19 @@
 #include <stdio.h>
 #include "data.h"
-#include <string.h>
+#include <malloc.h>
 
 void countSort(int arr[], int length);
-int getMax(int array[], int size);
+int getMax(const int *array, int size);
 
 int main()
-{   
+{
     int length = sizeof(data)/sizeof(int); // size of data
 
     for( int i = 0; i < length; i++) // printing input data
         printf("%d ", data[i]);
 
     printf(" Input\n");
-    
+
     countSort(data, length);
 
     for( int i = 0; i < length; i++) // printing input data
@@ -25,33 +25,34 @@ int main()
 }
 
 /* getMax: pull max element of array */
-int getMax(int array[], int size)
+int getMax(const int *array, int size)
 {
-    int max = array[0];
+    int max = *array;
     for (int i = 1; i < size; i++)
-        if (array[i] > max)
-            max = array[i];
+        if (*array + i > max)
+            max = *array + i;
     return max;
 }
 
 /* count sort */
-void countSort(int* array, int n) 
+void countSort(int* array, int length)
 {
-    const int k = getMax(array, size);
+    int k = getMax(array, length) + 1;
 
-    int c[k]; // array for counting
-    for (int i = 0; i <= n; i++){
+    int *c = (int *)malloc(sizeof(int) * k); // array for counting
+
+    for (int i = 0; i <= length; i++){
         c[i] = 0;
     }
 
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < length; i++) {
         c[array[i]]++; // counting elements
     }
-        
+
     int b = 0;
     for (int i = 0; i < k; i++) {
         for (int j = 0; j < c[i]; j++) {
             array[b++] = i; // insert elem
         }
-    }   
+    }
 }

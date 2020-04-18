@@ -63,7 +63,7 @@ void bucketSort(int array[],int n)
     }
 
     for (k = 0, i = 0; i < 3; i++) {
-        // Use quicksort to sort each bucket individually
+        // Use quick sort to sort each bucket individually
         qsort(buckets[i].values, buckets[i].count, sizeof(int), compareIntegers);
         for (j = 0; j < buckets[i].count; j++) {
             array[k + j] = buckets[i].values[j];
