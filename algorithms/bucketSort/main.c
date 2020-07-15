@@ -12,7 +12,7 @@ struct bucket
 void bucketSort(int array[],int n);
 int compareIntegers(const void *first, const void *second);
 
-void main()
+int main()
 {   
     int length = sizeof(data)/sizeof(int); // size of data
 

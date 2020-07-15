@@ -18,7 +18,7 @@ void deleteFromEnd();
 
 int count = 0;
 
-void main ()
+int main ()
 {
     int i, data;
 

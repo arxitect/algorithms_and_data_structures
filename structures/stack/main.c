@@ -23,15 +23,15 @@ int main ()
  
     printf ("STACK OPERATIONS\n");
     while (option) {
-        printf ("------------------------------------------\n");
-        printf ("1    -->    PUSH               \n");
-        printf ("2    -->    POP               \n");
-        printf ("3    -->    DISPLAY               \n");
-        printf ("4    -->    EXIT           \n");
-        printf ("------------------------------------------\n");
+        printf("------------------------------------------\n");
+        printf("1    -->    PUSH               \n");
+        printf("2    -->    POP               \n");
+        printf("3    -->    DISPLAY               \n");
+        printf("4    -->    EXIT           \n");
+        printf("------------------------------------------\n");
  
-        printf ("Enter your choice\n");
-        scanf    ("%d", &choice);
+        printf("Enter your choice\n");
+        scanf("%d", &choice);
         switch (choice){
             case 1:
                 push();

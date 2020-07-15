@@ -4,7 +4,7 @@
 void insertionSort( int arr[], int length);
 void swap(int *from, int *to);
 
-void main()
+int main()
 {   
     int length = sizeof(data) / sizeof(int); // size of data
 

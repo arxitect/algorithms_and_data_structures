@@ -3,7 +3,7 @@
 
 struct set
 {
-     int key;
+    int key;
     int data;
 };
 
@@ -19,7 +19,7 @@ struct set *array; // pointer for storage data
 int capacity = 10; // max size of arr
 int size = 0; // size of arr
 
-void main()
+int main()
 {
     int choice, key, data;
     int c = 0;
@@ -57,11 +57,13 @@ void main()
         scanf("%d", &c);
   }while (c == 1);
 }
+
 /*hashFunction: return hash of key*/
 int hashFunction(int key)
 {
     return (key % capacity);
 }
+
 /*checkPrime: to check if given input (i.e n) is prime or not*/
 int checkPrime(int n)
 {

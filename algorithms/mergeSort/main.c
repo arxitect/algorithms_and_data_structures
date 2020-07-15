@@ -4,7 +4,7 @@
 
 void mergeSort(int arr[], int l, int r);
 
-void main()
+int main()
 {   
     int length = sizeof(data)/sizeof(int); // size of data
 

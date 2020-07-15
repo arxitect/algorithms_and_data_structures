@@ -12,7 +12,7 @@ int queue[MAX];
 int rear = - 1; 
 int front = - 1;
 
-void main()
+int main()
 {
     int choice;
     while (true){

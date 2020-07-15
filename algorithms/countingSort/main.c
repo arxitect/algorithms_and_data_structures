@@ -5,7 +5,7 @@
 void countSort(int array[], int length);
 int getMax(const int array[], int size);
 
-void main()
+int main()
 {
     int length = sizeof(data)/sizeof(int); // size of data
 

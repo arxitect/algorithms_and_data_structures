@@ -3,7 +3,7 @@
 
 int binSearch(const int arr[], int pattern, int length);
 
-void main()
+int main()
 {   
     int length = sizeof(data)/sizeof(int); // size of data
 

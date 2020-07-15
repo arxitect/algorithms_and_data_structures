@@ -15,7 +15,7 @@ void printPostorder(node *tree);
 void delTree(node *tree);
 node *search(node **tree, int val);
 
-void main()
+int main()
 {
     node *root;
     node *tmp;
@@ -43,7 +43,7 @@ void main()
     // Search node into tree 
     tmp = search(&root, 4);
     if (tmp)
-        printf("Searched node=%d\n", tmp->data);
+        printf("Searched node = %d\n", tmp->data);
     else
         printf("Data Not found in tree.\n");
 

@@ -5,7 +5,7 @@ void swap(int *, int *);
 int partition (int arr[], int low, int high) ; 
 void quickSort(int arr[], int low, int high);
 
-void main()
+int main()
 {   
     int length = sizeof(data)/sizeof(int); // size of data
 

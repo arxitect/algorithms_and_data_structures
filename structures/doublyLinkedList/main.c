@@ -17,7 +17,7 @@ void insertAtTail(int x);
 void print();
 void reversePrint();
 
-void main() {
+int main() {
     insertAtHead(43); 
     print();
 
@@ -36,7 +36,8 @@ void main() {
     insertAtTail(8); 
     print(); 
     reversePrint();
-    
+
+    return 0;
 }
 /*getNewNode: create New node of list*/
 struct Node* getNewNode(int x) 

@@ -5,7 +5,7 @@ void heapSort(int arr[], int length);
 void heapify(int arr[], int n, int i);
 void swap(int *from, int *to);
 
-void main()
+int main()
 {   
     int length = sizeof(data) / sizeof(int); // size of data
 

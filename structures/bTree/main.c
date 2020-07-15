@@ -11,21 +11,19 @@ struct node
     struct node *right;
 };
  
- 
 struct node *newNode(void);
 struct node *initNode(char d, struct node *p1, struct node *p2);
 struct node *createTree(char a[], int i, int size);
 void preOrder (struct node * root);
 void inOrder (struct node * root);
 void postOrder (struct node * root);
- 
 
-void main(void)
+int main(void)
 {
-    char a[ARRAY_SIZE] = {'g','d','i','b','f','h','j','a','c','e'};
+    char arr[ARRAY_SIZE] = {'g','d','i','b','f','h','j','a','c','e'};
     struct node * root;
  
-    root = createTree(a, 0, ARRAY_SIZE) ;
+    root = createTree(arr, 0, ARRAY_SIZE) ;
     assert(root != NULL);
 
     printf("Preorder\n");
@@ -39,6 +37,8 @@ void main(void)
     printf("Postorder\n");
     postOrder(root);
     printf("\n");
+
+    return 0;
 }
 
 /*newNode: allocate memory for new node*/
@@ -60,12 +60,12 @@ struct node *initNode(char d1, struct node *p1, struct node *p2)
 }
  
 /*createTree: create new tree*/
-struct node *createTree(char a[], int i, int size)
+struct node *createTree(char arr[], int i, int size)
 {
     if (i >= size)
         return NULL;
     else
-        return (initNode(a[i], createTree(a, 2*i+1, size), createTree(a, 2*i+2, size)));
+        return (initNode(arr[i], createTree(arr, 2*i+1, size), createTree(arr, 2*i+2, size)));
 }
  
 /*preOrder: print tree*/
