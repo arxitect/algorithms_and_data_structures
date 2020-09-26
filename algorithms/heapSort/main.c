@@ -36,7 +36,7 @@ void heapify(int arr[], int n, int i)
     if (l < n && arr[l] > arr[largest])
         largest = l;
 
-    //if right is larger then root
+    // if right is larger then root
     if (r < n && arr[r] > arr[largest])
         largest = r;
 

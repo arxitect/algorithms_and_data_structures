@@ -52,7 +52,7 @@ void countSort(int array[], int length)
     int b = 0;
     for (int i = 0; i < k; i++) {
         for (int j = 0; j < c[i]; j++) {
-            array[b++] = i; // insert elem
+            array[b++] = i; // insert element
         }
     }
 }

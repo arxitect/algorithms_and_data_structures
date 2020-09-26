@@ -7,8 +7,7 @@
 struct node
 {
     char d;
-    struct node *left;
-    struct node *right;
+    struct node *left, *right;
 };
  
 struct node *newNode(void);

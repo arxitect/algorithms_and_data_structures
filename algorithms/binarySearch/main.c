@@ -7,7 +7,7 @@ int main()
 {   
     int length = sizeof(data)/sizeof(int); // size of data
 
-    int pattern; /* user input */
+    int pattern; // user input
 
     for( int i = 0; i < length; i++) // printing data
         printf("%d ", data[i]);

@@ -35,7 +35,7 @@ void insertionSort( int arr[], int length)
     }
 }
 
-/* swap: swap two values*/
+/* swap: swap two values */
 void swap(int *from, int *to)
 {
     int tmp = *from;

@@ -8,7 +8,7 @@ struct binTree {
 
 typedef struct binTree node;
 
-void insert(node ** tree, int val);
+void insert(node **tree, int val);
 void printPreorder(node *tree);
 void printInorder(node *tree);
 void printPostorder(node *tree);
