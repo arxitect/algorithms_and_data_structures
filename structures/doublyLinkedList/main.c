@@ -1,17 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//Doubly linked list
-struct Node  {
+// Node of linked list
+struct node  {
     int data;
-    struct Node* next;
-    struct Node* prev;
+    struct node* next;
+    struct node* prev;
 };
 
-//Head of list
-struct Node* head = NULL; 
+typedef struct node Node;
 
-struct Node* getNewNode(int x);
+// Head of list
+Node* head = NULL; 
+
+Node* getNewNode(int x);
 void insertAtHead(int x);
 void insertAtTail(int x);
 void print();
@@ -40,19 +42,19 @@ int main() {
     return 0;
 }
 /*getNewNode: create New node of list*/
-struct Node* getNewNode(int x) 
+Node* getNewNode(int x) 
 {
-    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    Node* newNode = (Node*)malloc(sizeof(Node));
     newNode->data = x;
     newNode->prev = NULL;
     newNode->next = NULL;
     return newNode;
 }
 
-/*insertAtHead: put element to top of list*/
+/* insertAtHead: put element to top of list */
 void insertAtHead(int x) 
 {
-    struct Node* newNode = getNewNode(x);
+    Node* newNode = getNewNode(x);
     if(head == NULL) {
         head = newNode;
         return;
@@ -62,11 +64,11 @@ void insertAtHead(int x)
     head = newNode;
 }
 
-/*insertAtTail: put element to end of list*/
+/* insertAtTail: put element to end of list */
 void insertAtTail(int x)
 {
-    struct Node* temp = head;
-    struct Node* newNode = getNewNode(x);
+    Node* temp = head;
+    Node* newNode = getNewNode(x);
     if(head == NULL) {
         head = newNode;
         return;
@@ -76,10 +78,10 @@ void insertAtTail(int x)
     newNode->prev = temp;
 }
 
-/*print: to display list*/
+/* print: to display list */
 void print() 
 {
-    struct Node* temp = head;
+    Node* temp = head;
     printf("Forward: ");
     while(temp != NULL) {
         printf("%d ",temp->data);
@@ -88,15 +90,15 @@ void print()
     printf("\n");
 }
 
-/*reversePrint: to display reverse list*/
+/* reversePrint: to display reverse list */
 void reversePrint() 
 {
-    struct Node* temp = head;
+    Node* temp = head;
     if(temp == NULL) return;
 
-    while(temp->next != NULL) {
+    while(temp->next != NULL)
         temp = temp->next;
-    }
+
     printf("Reverse: ");
     while(temp != NULL) {
         printf("%d ",temp->data);

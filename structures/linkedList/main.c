@@ -4,11 +4,11 @@
 
 struct node {
     int data;
-    struct node *next;
+    struct node  *next;
 };
-
-//Start of list
-struct node *start = NULL;
+typedef struct node  Node;
+// Start of list
+Node *start = NULL;
 
 void insertAtBegin(int x);
 void insertAtEnd(int x);
@@ -59,40 +59,38 @@ int main ()
                  continue;
         }
     }
-
-    return 0;
 }
 
-/*insertAtBegin: insert element to top of list*/
+/* insertAtBegin: insert element to top of list */
 void insertAtBegin(int x) 
 {
-    struct node *t;
+    Node *temp;
 
-    t = (struct node*)malloc(sizeof(struct node));
-    t->data = x;
+    temp = (Node*)malloc(sizeof(Node));
+    temp->data = x;
     count++;
 
     if (start == NULL) {
-        start = t;
+        start = temp;
         start->next = NULL;
         return;
     }
 
-    t->next = start;
-    start = t;
+    temp->next = start;
+    start = temp;
 }
 
-/*insertAtEnd: insert element to end of list*/
+/* insertAtEnd: insert element to end of list */
 void insertAtEnd(int x) 
 {
-    struct node *t, *temp;
+    Node *newNode, *temp;
 
-    t = (struct node*)malloc(sizeof(struct node));
-    t->data = x;
+    newNode = (Node*)malloc(sizeof(Node));
+    newNode->data = x;
     count++;
 
     if (start == NULL) {
-        start = t;
+        start = newNode;
         start->next = NULL;
         return;
     }
@@ -102,35 +100,35 @@ void insertAtEnd(int x)
     while (temp->next != NULL)
         temp = temp->next;
 
-    temp->next = t;
-    t->next = NULL;
+    temp->next = newNode;
+    newNode->next = NULL;
 }
 
-/*traverse: show elements of list*/
+/* traverse: show elements of list */
 void traverse() 
 {
-    struct node *t;
+    Node *temp;
 
-    t = start;
+    temp = start;
 
-    if (t == NULL) {
+    if (temp == NULL) {
         printf("Linked list is empty.\n");
         return;
     }
 
     printf("There are %d elements in linked list.\n", count);
 
-    while (t->next != NULL) {
-        printf("%d, ", t->data);
-        t = t->next;
+    while (temp->next != NULL) {
+        printf("%d, ", temp->data);
+        temp = temp->next;
     }
-    printf("%d\n", t->data);
+    printf("%d\n", temp->data);
 }
 
-/*deleteFromBegin: deleting element from top of list*/
+/* deleteFromBegin: deleting element from top of list */
 void deleteFromBegin() 
 {
-    struct node *t;
+    Node *temp;
     int n;
 
     if (start == NULL) {
@@ -139,18 +137,18 @@ void deleteFromBegin()
     }
 
     n = start->data;
-    t = start->next;
+    temp = start->next;
     free(start);
-    start = t;
+    start = temp;
     count--;
 
     printf("%d deleted from the beginning successfully.\n", n);
 }
 
-/*deleteFromEnd: deleting element from end of list*/
+/* deleteFromEnd: deleting element from end of list */
 void deleteFromEnd() 
 {
-    struct node *t, *u;
+    Node *target, *u;
     int n;
 
     if (start == NULL) {
@@ -168,16 +166,16 @@ void deleteFromEnd()
         return;
     }
 
-    t = start;
+    target = start;
 
-    while (t->next != NULL) {
-        u = t;
-        t = t->next;
+    while (target->next != NULL) {
+        u = target;
+        target = target->next;
     }
 
-    n = t->data;
+    n = target->data;
     u->next = NULL;
-    free(t);
+    free(target);
 
     printf("%d deleted from end successfully.\n", n);
 }

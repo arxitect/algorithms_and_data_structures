@@ -51,7 +51,7 @@ int main()
     delTree(root);
 }
 
-/*insert: insert to tree*/
+/* insert: insert to tree */
 void insert(node **tree, int val)
 {
     node *temp = NULL;
@@ -70,7 +70,7 @@ void insert(node **tree, int val)
 
 }
 
-/*printPreorder: print tree*/
+/* printPreorder: print tree */
 void printPreorder(node *tree)
 {
     if (tree){
@@ -81,7 +81,7 @@ void printPreorder(node *tree)
 
 }
 
-/*printInorder: print tree*/
+/* printInorder: print tree */
 void printInorder(node *tree)
 {
     if (tree){
@@ -91,7 +91,7 @@ void printInorder(node *tree)
     }
 }
 
-/*printPostorder: print tree*/
+/* printPostorder: print tree */
 void printPostorder(node *tree)
 {
     if (tree){
@@ -101,7 +101,7 @@ void printPostorder(node *tree)
     }
 }
 
-/*delTree: deleting tree*/
+/* delTree: deleting tree */
 void delTree(node *tree)
 {
     if (tree){
@@ -111,7 +111,7 @@ void delTree(node *tree)
     }
 }
 
-/*search: search value in tree*/
+/* search: search value in tree */
 node *search(node **tree, int val)
 {
     if(!(*tree)){

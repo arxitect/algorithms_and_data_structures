@@ -34,7 +34,7 @@ int getMax(const int arr[], int n)
     return mx; 
 } 
 
-/*countSort: function to do counting sort of arr*/
+/* countSort: function to do counting sort of arr */
 void countSort(int arr[], int n, int exp) 
 { 
     int output[n]; 

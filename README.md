@@ -17,3 +17,12 @@ Good luck!!!
 - [Linear search](algorithms/linearSearch/main.c)
 - [Merge sort](algorithms/mergeSort/main.c)
 - [Quick sort](algorithms/quickSort/main.c)
+- [Radix sort](algorithms/radixSort/main.c)
+
+## Structures
+
+- [Binary Tree](structures/binaryTree/main.c)
+- [B Tree](structures/bTree/main.c)
+- [Hash table](structures/hashTable/main.c)
+- [Linked list](structures/linkedList/main.c)
+- [Doubly linked list](structures/doublyLinkedList/main.c)

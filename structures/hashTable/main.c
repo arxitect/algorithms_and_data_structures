@@ -6,6 +6,7 @@ struct set
     int key;
     int data;
 };
+typedef struct set arItem;
 
 int hashFunction(int key);
 int checkPrime(int n);
@@ -15,7 +16,7 @@ void insert(int key, int data);
 void removeElement(int key);
 void display();
 
-struct set *array; // pointer for storage data
+arItem *array; // pointer for storage data
 int capacity = 10; // max size of arr
 int size = 0; // size of arr
 
@@ -58,13 +59,13 @@ int main()
   }while (c == 1);
 }
 
-/*hashFunction: return hash of key*/
+/* hashFunction: return hash of key */
 int hashFunction(int key)
 {
     return (key % capacity);
 }
 
-/*checkPrime: to check if given input (i.e n) is prime or not*/
+/* checkPrime: to check if given input (i.e n) is prime or not */
 int checkPrime(int n)
 {
     if (n == 1 || n == 0)
@@ -78,7 +79,7 @@ int checkPrime(int n)
     return 1;
 }
 
-/*getPrime: returns prime number just greater than array capacity*/
+/* getPrime: returns prime number just greater than array capacity */
 int getPrime(int n)
 {
     if(n % 2 == 0)
@@ -90,11 +91,11 @@ int getPrime(int n)
     return n;
 }
 
-/*initArray: initialize empty array*/
+/* initArray: initialize empty array */
 void initArray()
 {
     capacity = getPrime(capacity);
-    array = (struct set *)malloc(capacity * sizeof(struct set));
+    array = (arItem *)malloc(capacity * sizeof(arItem));
 
     for (int i = 0; i < capacity; i++){
         array[i].key = 0;
@@ -102,7 +103,7 @@ void initArray()
     }
 }
 
-/*insert: insert new element of array*/
+/* insert: insert new element of array */
 void insert(int key, int data)
 {
     int index = hashFunction(key);
@@ -119,7 +120,7 @@ void insert(int key, int data)
 
 }
 
-/*removeElement: remove element of array*/
+/* removeElement: remove element of array */
 void removeElement(int key)
 {
     int index = hashFunction(key);
@@ -133,10 +134,10 @@ void removeElement(int key)
     }
 }
 
-/*display: display elements of array*/
+/* display: display elements of array */
 void display()
 {
-    for (int i = 0; i < capacity; i++){
+    for (int i = 0; i < capacity; i++) {
         if (array[i].data == 0)
             printf("\n array[%d]: empty ", i);
         else
