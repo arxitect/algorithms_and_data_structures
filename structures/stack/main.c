@@ -3,13 +3,11 @@
  
 struct stack
 {
-    int stk[MAXSIZE];
     int top; // key of first element
+    int data[MAXSIZE];
 };
 
-typedef struct stack STACK;
-
-STACK s; // Stack instance
+struct stack stackInstance;
  
 void push(void);
 void pop(void);
@@ -19,7 +17,7 @@ int main ()
 {
     int choice;
     int option = 1;
-    s.top = -1;
+    stackInstance.top = -1;
  
     printf ("STACK OPERATIONS\n");
     while (option) {
@@ -29,7 +27,6 @@ int main ()
         printf("3    -->    DISPLAY               \n");
         printf("4    -->    EXIT           \n");
         printf("------------------------------------------\n");
- 
         printf("Enter your choice\n");
         scanf("%d", &choice);
         switch (choice){
@@ -55,28 +52,26 @@ int main ()
 void push ()
 {
     int num;
-
-    if (s.top == (MAXSIZE - 1)){
-        printf ("Stack is Full\n");
-    }else{
+    if (stackInstance.top == (MAXSIZE - 1))
+        printf ("stackInstance is Full\n");
+    else{
         printf ("Enter the element to be pushed\n");
         scanf ("%d", &num);
-
-        s.top++;
-        s.stk[s.top] = num;
+        stackInstance.top++;
+        stackInstance.data[stackInstance.top] = num;
     }
 }
 
 /* pop: extract element from stack */
 void pop ()
 {
-    if (s.top == - 1){
-        printf ("Stack is Empty\n");
-    }else{
-        printf ("poped element is = %d\n", s.stk[s.top]);
+    if (stackInstance.top == - 1)
+        printf ("stackInstance is Empty\n");
+    else{
+        printf ("poped element is = %d\n", stackInstance.data[stackInstance.top]);
 
-        s.stk[s.top] = 0;
-        s.top--; 
+        stackInstance.data[stackInstance.top] = 0;
+        stackInstance.top--; 
     }
 }
 
@@ -84,12 +79,12 @@ void pop ()
 void display ()
 {
     int i;
-    if (s.top == -1){
-        printf ("Stack is empty\n");
-    }else{
+    if (stackInstance.top == -1)
+        printf ("stackInstance is empty\n");
+    else{
         printf ("\n The status of the stack is \n");
-        for (i = s.top; i >= 0; i--)
-            printf ("%d\n", s.stk[i]);
+        for (i = stackInstance.top; i >= 0; i--)
+            printf ("%d\n", stackInstance.data[i]);
     }
     printf ("\n");
 }

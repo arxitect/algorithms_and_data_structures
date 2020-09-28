@@ -26,3 +26,6 @@ Good luck!!!
 - [Hash table](structures/hashTable/main.c)
 - [Linked list](structures/linkedList/main.c)
 - [Doubly linked list](structures/doublyLinkedList/main.c)
+- [Queue](structures/queue/main.c)
+- [Red-black tree](structures/redBlackTree/main.c)
+- [Stack](structures/stack/main.c)

@@ -4,24 +4,25 @@
 
 #define NB_ELEMS 250
 
-//node structure
+// node structure
 struct node
 {
     int data; // data of node
     char color; // color of node: red or black
     struct node *left, *right, *parent; // children and parent
 };
+typedef struct node Node;
 
-void leftRotate(struct node **root,struct node *x);
-void rightRotate(struct node **root,struct node *y);
-void insertFixUp(struct node **root,struct node *z);
-void insert(struct node **root, int data);
-void inOrder(struct node *root);
+void leftRotate(Node **root,Node *x);
+void rightRotate(Node **root,Node *y);
+void insertFixUp(Node **root,Node *z);
+void insert(Node **root, int data);
+void inOrder(Node *root);
 
 int main()
 {
     srandom(time(NULL));
-    struct node *root = NULL;
+    Node *root = NULL;
 
     clock_t t0 = clock();
     for (int i = 0; i < NB_ELEMS; ++i)
@@ -39,14 +40,14 @@ int main()
     return 0;
 }
 
-/*leftRotate: left rotation*/
-void leftRotate(struct node **root,struct node *x)
+/* leftRotate: left rotation */
+void leftRotate(Node **root,Node *x)
 {
     if (!x || !x->right)
         return ;
 
     //y stored pointer of right child of x
-    struct node *y = x->right;
+    Node *y = x->right;
 
     x->right = y->left;
 
@@ -69,13 +70,13 @@ void leftRotate(struct node **root,struct node *x)
     x->parent = y;
 }
 
-/*rightRotate: similar leftRotate*/
-void rightRotate(struct node **root,struct node *y)
+/* rightRotate: similar leftRotate */
+void rightRotate(Node **root, Node *y)
 {
     if (!y || !y->left)
         return ;
 
-    struct node *x = y->left;
+    Node *x = y->left;
     y->left = x->right;
 
     if (x->right != NULL)
@@ -94,11 +95,11 @@ void rightRotate(struct node **root,struct node *y)
     y->parent = x;
 }
 
-/*insertFixUp: fix tree after insertion */
-void insertFixUp(struct node **root,struct node *z)
+/* insertFixUp: fix tree after insertion */
+void insertFixUp(Node **root,Node *z)
 {
     while (z != *root && z != (*root)->left && z != (*root)->right && z->parent->color == 'R'){
-        struct node *y;
+        Node *y;
 
         if (z->parent && z->parent->parent && z->parent == z->parent->parent->left)
             y = z->parent->parent->right;
@@ -152,10 +153,10 @@ void insertFixUp(struct node **root,struct node *z)
     (*root)->color = 'B'; 
 }
 
-/*insert: insert new node of tree*/
-void insert(struct node **root, int data)
+/* insert: insert new node of tree */
+void insert(Node **root, int data)
 {
-    struct node *z = (struct node*)malloc(sizeof(struct node));
+    Node *z = (Node*)malloc(sizeof(Node));
 
     z->data = data;
     z->left = z->right = z->parent = NULL;
@@ -164,8 +165,8 @@ void insert(struct node **root, int data)
         z->color = 'B';
         (*root) = z;
     }else {
-        struct node *y = NULL;
-        struct node *x = (*root);
+        Node *y = NULL;
+        Node *x = (*root);
 
         while (x != NULL){
             y = x;
@@ -185,8 +186,8 @@ void insert(struct node **root, int data)
         insertFixUp(root,z);
     }
 }
-/*inOrder: traverse tree in order*/
-void inOrder(struct node *root)
+/* inOrder: traverse tree in order */
+void inOrder(Node *root)
 {
     static int last = 0;
     if (root == NULL)
