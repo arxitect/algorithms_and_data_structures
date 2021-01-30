@@ -1,23 +1,22 @@
 #include <stdio.h>
 #include <malloc.h>
-#include "data.h"
 
 void countSort(int array[], int length);
 int getMax(const int array[], int size);
+void printData(const int data[], int length);
 
 int main()
 {
-    int length = sizeof(data)/sizeof(int); // size of data
+    int data[9] = { 54, 38, 82, 61, 0, 11, 23, 76, 23 };
+    int length = sizeof(data)/sizeof(int);
 
-    for( int i = 0; i < length; i++) // printing input data
-        printf("%d ", data[i]);
+    printData(data, length);
 
     printf(" Input\n");
 
     countSort(data, length);
 
-    for( int i = 0; i < length; i++) // printing input data
-        printf("%d ", data[i]);
+    printData(data, length);
 
     printf(" Output\n");
 
@@ -39,14 +38,16 @@ void countSort(int array[], int length)
 {
     int k = getMax(array, length) + 1;
 
-    int *c = (int *)malloc(sizeof(int) * k); // array for counting
+    // array for counting
+    int *c = (int *)malloc(sizeof(int) * k);
 
-    for (int i = 0; i <= length; i++){
+    for (int i = 0; i <= length; i++) {
         c[i] = 0;
     }
 
+    // counting elements
     for (int i = 0; i < length; i++) {
-        c[array[i]]++; // counting elements
+        c[array[i]]++;
     }
 
     int b = 0;
@@ -55,4 +56,10 @@ void countSort(int array[], int length)
             array[b++] = i; // insert element
         }
     }
+}
+
+void printData(const int data[], int length)
+{
+    for( int i = 0; i < length; i++)
+        printf("%d ", data[i]);
 }
